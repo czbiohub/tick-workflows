@@ -5,4 +5,9 @@ flye_subassemblies:
 	--meta -g 1g -t 24 -i 3
 flye: 
 	mkrdir nano_flye
-	/mnt/data/code/Flye/bin/flye --nano-raw /newvolume/raw_data/all_tick.fastq.gz -g 1g -o /newvolume/raw_data/nano_flye/ --threads 4
+	/mnt/data/code/Flye/bin/flye --nano-raw \
+	/newvolume/raw_data/all_tick.fastq.gz -g 1g -o \
+	/newvolume/raw_data/nano_flye/ --threads 4
+quast:
+	quast <fasta.a> -o /newvolume/subassemblies/
+
