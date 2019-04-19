@@ -11,3 +11,7 @@ flye:
 quast:
 	quast <fasta.a> -o /newvolume/subassemblies/
 
+wtdbg2: 
+	./wtdbg2 -x ont -g 1g -t 16 \
+	/newvolume/raw_data/all_tick.fastq.gz -fo pre_tick
+
