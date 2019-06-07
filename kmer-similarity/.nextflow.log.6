@@ -1,0 +1,258 @@
+Jun-07 15:42:03.713 [main] DEBUG nextflow.cli.Launcher - $> nextflow run czbiohub/nf-kmer-similarity -latest -r olgabot/fix-fasta --fastas 's3://tick-genome/rna/pacbio-isoseq/2018-06-07/fake_genome_and_transcriptome/tick*.fake_ref_transcriptome.fasta'
+Jun-07 15:42:03.994 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 19.03.0-edge
+Jun-07 15:42:05.479 [main] DEBUG nextflow.scm.AssetManager - Git config: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/.git/config; branch: master; remote: origin; url: https://github.com/czbiohub/nf-kmer-similarity.git
+Jun-07 15:42:05.504 [main] DEBUG nextflow.scm.AssetManager - Git config: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/.git/config; branch: master; remote: origin; url: https://github.com/czbiohub/nf-kmer-similarity.git
+Jun-07 15:42:05.504 [main] INFO  nextflow.cli.CmdRun - Pulling czbiohub/nf-kmer-similarity ...
+Jun-07 15:42:05.504 [main] DEBUG nextflow.scm.AssetManager - Pull pipeline czbiohub/nf-kmer-similarity  -- Using local path: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity
+Jun-07 15:42:06.773 [main] DEBUG nextflow.scm.AssetManager - Git config: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/.git/config; branch: master; remote: origin; url: https://github.com/czbiohub/nf-kmer-similarity.git
+Jun-07 15:42:06.773 [main] INFO  nextflow.cli.CmdRun - Launching `czbiohub/nf-kmer-similarity` [marvelous_aryabhata] - revision: ec7dcbef62 [olgabot/fix-fasta]
+Jun-07 15:42:06.809 [main] DEBUG nextflow.config.ConfigBuilder - Found config home: /Users/olgabot/.nextflow/config
+Jun-07 15:42:06.809 [main] DEBUG nextflow.config.ConfigBuilder - Found config base: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/nextflow.config
+Jun-07 15:42:06.811 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/olgabot/.nextflow/config
+Jun-07 15:42:06.812 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/nextflow.config
+Jun-07 15:42:06.840 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+Jun-07 15:42:06.984 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+Jun-07 15:42:07.251 [main] DEBUG nextflow.Session - Session uuid: e2f9ecab-5d82-486c-b2ff-6a95439f6c99
+Jun-07 15:42:07.251 [main] DEBUG nextflow.Session - Run name: marvelous_aryabhata
+Jun-07 15:42:07.254 [main] DEBUG nextflow.Session - Executor pool size: 8
+Jun-07 15:42:17.322 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 19.03.0-edge build 5061
+  Modified: 14-03-2019 17:26 UTC (10:26 PDT)
+  System: Mac OS X 10.14.4
+  Runtime: Groovy 2.5.6 on Java HotSpot(TM) 64-Bit Server VM 1.8.0_131-b11
+  Encoding: UTF-8 (UTF-8)
+  Process: 12466@Olgas-MacBook-Pro.local [192.168.101.150]
+  CPUs: 8 - Mem: 16 GB (258.2 MB) - Swap: 1 GB (755.8 MB)
+Jun-07 15:42:17.345 [main] DEBUG nextflow.Session - Work-dir: /Users/olgabot/code/tick-workflows/kmer-similarity/work [Mac OS X]
+Jun-07 15:42:17.346 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/bin
+Jun-07 15:42:17.666 [main] DEBUG nextflow.Session - Session start invoked
+Jun-07 15:42:17.671 [main] DEBUG nextflow.processor.TaskDispatcher - Dispatcher > start
+Jun-07 15:42:17.672 [main] DEBUG nextflow.trace.TraceFileObserver - Flow starting -- trace file: /Users/olgabot/code/tick-workflows/kmer-similarity/trace.txt
+Jun-07 15:42:17.687 [main] DEBUG nextflow.script.ScriptRunner - > Script parsing
+Jun-07 15:42:18.347 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Jun-07 15:42:18.349 [main] WARN  nextflow.script.ScriptBinding - Access to undefined parameter `help` -- Initialise it to a default value eg. `params.help = some_value`
+Jun-07 15:42:18.503 [PathVisitor-1] DEBUG nextflow.file.FileHelper - Creating a file system instance for provider: S3FileSystemProvider
+Jun-07 15:42:18.512 [PathVisitor-1] DEBUG nextflow.Global - Using AWS credential defined in `default` section in file: /Users/olgabot/.aws/credentials
+Jun-07 15:42:18.519 [PathVisitor-1] DEBUG nextflow.file.FileHelper - AWS S3 config details: {secret_key=Zl6hSJ.., max_connections=20, upload_storage_class=INTELLIGENT_TIERING, storage_encryption=AES256, access_key=AKIAI2.., region=us-west-2, connection_timeout=10000}
+Jun-07 15:42:18.586 [main] INFO  nextflow.Nextflow - ==================================================================
+      _                            _       _ _         _ _
+     | |_ ___ _____ ___ ___    ___|_|_____|_| |___ ___|_| |_ _ _
+     | '_|___|     | -_|  _|  |_ -| |     | | | .'|  _| |  _| | |
+     |_,_|   |_|_|_|___|_|    |___|_|_|_|_|_|_|__,|_| |_|_| |_  |
+                                                            |___|
+
+czbiohub/nf-kmer-similarity vnull"
+==================================================================
+Jun-07 15:42:18.587 [main] WARN  nextflow.script.ScriptBinding - Access to undefined parameter `max_memory` -- Initialise it to a default value eg. `params.max_memory = some_value`
+Jun-07 15:42:18.588 [main] WARN  nextflow.script.ScriptBinding - Access to undefined parameter `max_cpus` -- Initialise it to a default value eg. `params.max_cpus = some_value`
+Jun-07 15:42:18.588 [main] WARN  nextflow.script.ScriptBinding - Access to undefined parameter `max_time` -- Initialise it to a default value eg. `params.max_time = some_value`
+Jun-07 15:42:18.597 [main] INFO  nextflow.Nextflow - Pipeline Name  : czbiohub/nf-kmer-similarity
+Pipeline Version: null
+Run Name       : marvelous_aryabhata
+Read Pairs     : false
+Input fastas   : s3://tick-genome/rna/pacbio-isoseq/2018-06-07/fake_genome_and_transcriptome/tick*.fake_ref_transcriptome.fasta
+SRA/ENA IDs    : false
+Molecules      : dna,protein
+K-mer sizes    : 21,27,33,51
+Log2 sketch sizes: 10,12,14,16
+Make one signature per record?: false
+Max Memory     : null
+Max CPUs       : null
+Max Time       : null
+Output dir     : nextflow-output
+Working dir    : /Users/olgabot/code/tick-workflows/kmer-similarity/work
+Container Engine: docker
+Container      : [:]
+Current home   : /Users/olgabot
+Current user   : olgabot
+Current path   : /Users/olgabot/code/tick-workflows/kmer-similarity
+Script dir     : /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity
+Config Profile : standard
+Jun-07 15:42:18.597 [main] INFO  nextflow.Nextflow - =========================================
+Jun-07 15:42:18.684 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: local
+Jun-07 15:42:18.685 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Jun-07 15:42:18.694 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Jun-07 15:42:18.696 [main] INFO  nextflow.executor.Executor - [warm up] executor > local
+Jun-07 15:42:18.702 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=32; memory=16 GB; capacity=8; pollInterval=100ms; dumpInterval=5m
+Jun-07 15:42:18.709 [main] DEBUG nextflow.processor.TaskDispatcher - Starting monitor: LocalPollingMonitor
+Jun-07 15:42:18.710 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+Jun-07 15:42:18.720 [main] DEBUG nextflow.executor.Executor - Invoke register for executor: local
+Jun-07 15:42:18.781 [main] DEBUG nextflow.Session - >>> barrier register (process: get_software_versions)
+Jun-07 15:42:18.786 [main] DEBUG nextflow.processor.TaskProcessor - Creating operator > get_software_versions -- maxForks: 8
+Jun-07 15:42:18.883 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: local
+Jun-07 15:42:18.883 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Jun-07 15:42:18.884 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Jun-07 15:42:18.885 [main] DEBUG nextflow.Session - >>> barrier register (process: fastqc)
+Jun-07 15:42:18.885 [main] DEBUG nextflow.processor.TaskProcessor - Creating operator > fastqc -- maxForks: 8
+Jun-07 15:42:19.137 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: local
+Jun-07 15:42:19.137 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Jun-07 15:42:19.137 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Jun-07 15:42:19.138 [main] DEBUG nextflow.Session - >>> barrier register (process: fastp)
+Jun-07 15:42:19.138 [main] DEBUG nextflow.processor.TaskProcessor - Creating operator > fastp -- maxForks: 8
+Jun-07 15:42:19.174 [main] DEBUG nextflow.util.CacheHelper - Config settings `withName:sourmash_compute_sketch` matches process sourmash_compute_sketch
+Jun-07 15:42:19.176 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: local
+Jun-07 15:42:19.176 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Jun-07 15:42:19.177 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Jun-07 15:42:19.177 [main] WARN  nextflow.processor.TaskProcessor - Input `set` must define at least two component -- Check process `sourmash_compute_sketch`
+Jun-07 15:42:19.186 [main] DEBUG nextflow.Session - >>> barrier register (process: sourmash_compute_sketch)
+Jun-07 15:42:19.186 [main] DEBUG nextflow.processor.TaskProcessor - Creating *combiner* operator for each param(s) at index(es): [0, 1]
+Jun-07 15:42:19.205 [main] DEBUG nextflow.processor.TaskProcessor - Creating operator > sourmash_compute_sketch -- maxForks: 8
+Jun-07 15:42:19.241 [main] DEBUG nextflow.util.CacheHelper - Config settings `withName:sourmash_compare_sketches` matches process sourmash_compare_sketches
+Jun-07 15:42:19.242 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: local
+Jun-07 15:42:19.242 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Jun-07 15:42:19.242 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Jun-07 15:42:19.243 [main] DEBUG nextflow.Session - >>> barrier register (process: sourmash_compare_sketches)
+Jun-07 15:42:19.243 [main] DEBUG nextflow.processor.TaskProcessor - Creating operator > sourmash_compare_sketches -- maxForks: 8
+Jun-07 15:42:19.258 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: local
+Jun-07 15:42:19.258 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Jun-07 15:42:19.258 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Jun-07 15:42:19.260 [main] DEBUG nextflow.Session - >>> barrier register (process: multiqc)
+Jun-07 15:42:19.261 [main] DEBUG nextflow.processor.TaskProcessor - Creating operator > multiqc -- maxForks: 8
+Jun-07 15:42:19.268 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: local
+Jun-07 15:42:19.269 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Jun-07 15:42:19.269 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Jun-07 15:42:19.270 [main] DEBUG nextflow.Session - >>> barrier register (process: output_documentation)
+Jun-07 15:42:19.270 [main] DEBUG nextflow.processor.TaskProcessor - Creating operator > output_documentation -- maxForks: 8
+Jun-07 15:42:19.276 [main] DEBUG nextflow.script.ScriptRunner - > Await termination 
+Jun-07 15:42:19.277 [main] DEBUG nextflow.Session - Session await
+Jun-07 15:42:19.308 [Actor Thread 2] DEBUG nextflow.util.CacheHelper - Unable to get file attributes file: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/docs/output.md -- Cause: java.nio.file.NoSuchFileException: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/docs/output.md
+Jun-07 15:42:19.322 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jun-07 15:42:19.335 [Task submitter] INFO  nextflow.Session - [6b/0e5ace] Submitted process > get_software_versions
+Jun-07 15:42:19.361 [Task submitter] WARN  nextflow.executor.BashWrapperBuilder - Task runtime metrics are not reported when using macOS without a container engine
+Jun-07 15:42:19.373 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jun-07 15:42:19.373 [Task submitter] INFO  nextflow.Session - [cd/37386e] Submitted process > output_documentation (null)
+Jun-07 15:42:19.508 [PathVisitor-1] DEBUG nextflow.file.PathVisitor - files for syntax: glob; folder: /tick-genome/rna/pacbio-isoseq/2018-06-07/fake_genome_and_transcriptome/; pattern: tick*.fake_ref_transcriptome.fasta; options: [:]
+Jun-07 15:42:19.516 [PathVisitor-1] DEBUG nextflow.file.FileHelper - Path matcher not defined by 'S3FileSystem' file system -- using default default strategy
+Jun-07 15:42:19.538 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: output_documentation (null); status: COMPLETED; exit: 127; error: -; workDir: /Users/olgabot/code/tick-workflows/kmer-similarity/work/cd/37386ed8d993062138bae2323bd54a]
+Jun-07 15:42:19.578 [Task monitor] ERROR nextflow.processor.TaskProcessor - Error executing process > 'output_documentation (null)'
+
+Caused by:
+  Process `output_documentation (null)` terminated with an error exit status (127)
+
+Command executed:
+
+  markdown_to_html.r output.md results_description.html
+
+Command exit status:
+  127
+
+Command output:
+  (empty)
+
+Command error:
+  .command.sh: line 2: markdown_to_html.r: command not found
+
+Work dir:
+  /Users/olgabot/code/tick-workflows/kmer-similarity/work/cd/37386ed8d993062138bae2323bd54a
+
+Tip: you can replicate the issue by changing to the process work dir and entering the command `bash .command.run`
+Jun-07 15:42:19.585 [Actor Thread 1] DEBUG nextflow.Session - <<< barrier arrive (process: output_documentation)
+Jun-07 15:42:19.599 [Task monitor] DEBUG nextflow.Session - Session aborted -- Cause: Process `output_documentation (null)` terminated with an error exit status (127)
+Jun-07 15:42:19.627 [Task monitor] DEBUG nextflow.Session - The following nodes are still active:
+[process] fastqc
+  status=ACTIVE
+  port 0: (queue) OPEN  ; channel: -
+  port 1: (cntrl) -     ; channel: $
+
+[process] fastp
+  status=ACTIVE
+  port 0: (queue) OPEN  ; channel: -
+  port 1: (cntrl) -     ; channel: $
+
+[process] sourmash_compute_sketch
+  status=ACTIVE
+  port 0: (value) bound ; channel: __$eachinparam<0>
+  port 1: (value) bound ; channel: __$eachinparam<1>
+  port 2: (value) OPEN  ; channel: -
+  port 3: (value) OPEN  ; channel: -
+  port 4: (value) OPEN  ; channel: -
+  port 5: (cntrl) -     ; channel: $
+
+[process] sourmash_compare_sketches
+  status=ACTIVE
+  port 0: (queue) OPEN  ; channel: -
+  port 1: (cntrl) -     ; channel: $
+
+[process] multiqc
+  status=ACTIVE
+  port 0: (value) bound ; channel: multiqc_config
+  port 1: (value) OPEN  ; channel: fastqc/*
+  port 2: (value) OPEN  ; channel: software_versions/*
+  port 3: (value) bound ; channel: workflow_summary
+  port 4: (cntrl) -     ; channel: $
+
+Jun-07 15:42:19.634 [main] DEBUG nextflow.Session - Session await > all process finished
+Jun-07 15:42:19.634 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Jun-07 15:42:19.643 [Actor Thread 6] DEBUG nextflow.Session - <<< barrier arrive (process: fastqc)
+Jun-07 15:42:19.645 [Actor Thread 1] DEBUG nextflow.Session - <<< barrier arrive (process: fastp)
+Jun-07 15:42:19.645 [Actor Thread 6] DEBUG nextflow.Session - <<< barrier arrive (process: sourmash_compute_sketch)
+Jun-07 15:42:19.646 [Actor Thread 11] DEBUG nextflow.Session - <<< barrier arrive (process: multiqc)
+Jun-07 15:42:19.648 [main] ERROR nextflow.script.WorkflowMetadata - Failed to invoke `workflow.onComplete` event handler
+java.io.FileNotFoundException: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/assets/email_template.txt (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileReader.<init>(FileReader.java:72)
+	at groovy.text.TemplateEngine.createTemplate(TemplateEngine.java:43)
+	at groovy.text.TemplateEngine$createTemplate.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:47)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:115)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:127)
+	at _nf_script_02081c33$_run_closure12.doCall(_nf_script_02081c33:458)
+	at _nf_script_02081c33$_run_closure12.doCall(_nf_script_02081c33)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:101)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:263)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)
+	at groovy.lang.Closure.call(Closure.java:405)
+	at groovy.lang.Closure.call(Closure.java:399)
+	at nextflow.script.WorkflowMetadata$_invokeOnComplete_closure4.doCall(WorkflowMetadata.groovy:369)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:101)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:263)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)
+	at groovy.lang.Closure.call(Closure.java:405)
+	at groovy.lang.Closure.call(Closure.java:421)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.each(DefaultGroovyMethods.java:2296)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.each(DefaultGroovyMethods.java:2281)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.each(DefaultGroovyMethods.java:2322)
+	at nextflow.script.WorkflowMetadata.invokeOnComplete(WorkflowMetadata.groovy:367)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:101)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1217)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)
+	at org.codehaus.groovy.runtime.InvokerHelper.invokePogoMethod(InvokerHelper.java:1011)
+	at org.codehaus.groovy.runtime.InvokerHelper.invokeMethod(InvokerHelper.java:994)
+	at org.codehaus.groovy.runtime.InvokerHelper.invokeMethodSafe(InvokerHelper.java:97)
+	at nextflow.script.WorkflowMetadata$_closure3.doCall(WorkflowMetadata.groovy:233)
+	at nextflow.script.WorkflowMetadata$_closure3.call(WorkflowMetadata.groovy)
+	at nextflow.Session.shutdown0(Session.groovy:671)
+	at nextflow.Session.destroy(Session.groovy:623)
+	at nextflow.script.ScriptRunner.terminate(ScriptRunner.groovy:389)
+	at nextflow.script.ScriptRunner.execute(ScriptRunner.groovy:172)
+	at nextflow.cli.CmdRun.run(CmdRun.groovy:245)
+	at nextflow.cli.Launcher.run(Launcher.groovy:449)
+	at nextflow.cli.Launcher.main(Launcher.groovy:626)
+Jun-07 15:42:19.652 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local)
+Jun-07 15:42:19.661 [main] WARN  n.processor.TaskPollingMonitor - Killing pending tasks (1)
+Jun-07 15:42:19.688 [main] DEBUG nextflow.trace.StatsObserver - Workflow completed > WorkflowStats[succeedCount=0; failedCount=2; ignoredCount=0; cachedCount=0; succeedDuration=0ms; failedDuration=88ms; cachedDuration=0ms]
+Jun-07 15:42:19.688 [main] DEBUG nextflow.trace.TraceFileObserver - Flow completing -- flushing trace file
+Jun-07 15:42:19.691 [main] DEBUG nextflow.trace.ReportObserver - Flow completing -- rendering html report
+Jun-07 15:42:19.733 [main] DEBUG nextflow.trace.ReportObserver - Execution report summary data:
+  {"output_documentation":{"cpu":null,"mem":null,"vmem":null,"time":{"mean":88,"min":88,"q1":88,"q2":88,"q3":88,"max":88,"minLabel":"output_documentation (null)","maxLabel":"output_documentation (null)","q1Label":"output_documentation (null)","q2Label":"output_documentation (null)","q3Label":"output_documentation (null)"},"reads":null,"writes":null,"cpuUsage":null,"memUsage":null,"timeUsage":null},"get_software_versions":{"cpu":null,"mem":null,"vmem":null,"time":null,"reads":null,"writes":null,"cpuUsage":null,"memUsage":null,"timeUsage":null}}
+Jun-07 15:42:21.340 [main] DEBUG nextflow.trace.TimelineObserver - Flow completing -- rendering html timeline
+Jun-07 15:42:21.558 [main] DEBUG nextflow.CacheDB - Closing CacheDB done
+Jun-07 15:42:21.569 [main] DEBUG nextflow.Session - AWS S3 uploader shutdown
+Jun-07 15:42:21.594 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye
