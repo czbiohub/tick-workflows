@@ -7,4 +7,4 @@ fake_transcriptomes:
 		-work-dir 's3://tick-genome/nextflow-intermediates/' \
 		-profile czbiohub_aws \
 		-e.process.executor='awsbatch' \
-		--log2_sketch_sizes 8,9
+		--log2_sketch_sizes 8
