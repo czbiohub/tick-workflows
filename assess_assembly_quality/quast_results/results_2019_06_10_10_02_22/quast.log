@@ -1,0 +1,12 @@
+/home/olga/miniconda3/envs/quast/bin/quast --large --threads 120 -r /home/olga/data/tick-genome/dna/2018-10-10-dovetail/ixodes_scapularis_06May2018_kaVVW.fasta.gz --eukaryote --labels 'OmniTier 35x,OmniTier 231x,PacBio IsoSeq Tick 2 fake transcriptome,PacBio IsoSeq Tick 2 fake genome,PacBio JCVI ISE6 cell line,IscaW1' --rna-finding --conserved-genes-finding --circos --pe1 /home/olga/data/tick-genome/dna/2018-06-28/pre-assembly_v3/tick_1_S1_R1_post-trimming.fastq.gz --pe2 /home/olga/data/tick-genome/dna/2018-06-28/pre-assembly_v3/tick_1_S1_R2_post-trimming.fastq.gz /home/olga/data/tick-genome/dna/2019-06-07_omnnitier_compstor/tick/tick_assembly_35x/contigs2.fa /home/olga/data/tick-genome/dna/2019-06-07_omnnitier_compstor/tick/tick_assembly_231x/Ixodes_scapularis_230x/contigs2.fa /home/olga/data/tick-genome/rna/pacbio-isoseq/2018-06-07/fake_genome_and_transcriptome/tick2.fake_ref_transcriptome.fasta /home/olga/data/tick-genome/dna/2018-07-26-pacbio/contigs.fa /home/olga/data/tick-genome/dna/2018-12-03_IscaW1/Ixodes-scapularis-Wikel_CONTIGS_IscaW1.fa.gz
+
+Version: 5.0.2
+
+System information:
+  OS: Linux-4.15.0-45-generic-x86_64-with-debian-stretch-sid (linux_64)
+  Python version: 3.6.8
+  CPUs number: 128
+
+Started: 2019-06-10 10:02:22
+
+Logging to /home/olga/code/tick-workflows/assess_assembly_quality/quast_results/results_2019_06_10_10_02_22/quast.log

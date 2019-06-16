@@ -1,0 +1,23 @@
+omnitier_busco:
+	cd ~/data/tick-genome/dna/2019-06-07_omnnitier_compstor/tick/tick_assembly_35x
+	run_busco --lineage ~/data/busco/lineages/arthropoda_odb9 --in contigs2.fa --out tick1 --mode genome --cpu 32
+
+quast:
+	# beforehand: need to 'source activate quast'
+	reference=${HOME}/data/tick-genome/dna/2018-10-10-dovetail/ixodes_scapularis_06May2018_kaVVW.fasta.gz
+
+	omnitier35=$HOME/data/tick-genome/dna/2019-06-07_omnnitier_compstor/tick/tick_assembly_35x/contigs2.fa
+	omnitier231=$HOME/data/tick-genome/dna/2019-06-07_omnnitier_compstor/tick/tick_assembly_231x/contigs2.fa
+	pacbio_tick2_transcriptome=$HOME/data/tick-genome/rna/pacbio-isoseq/2018-06-07/fake_genome_and_transcriptome/tick2.fake_ref_transcriptome.fasta
+	pacbio_tick2_genome=$HOME/data/tick-genome/rna/pacbio-isoseq/2018-06-07/fake_genome_and_transcriptome/tick2.fake_ref_transcriptome.fasta
+	pacbio_jcvi_ise6_asm2=$HOME/data/tick-genome/dna/2018-07-26-pacbio/contigs.fa
+	iscaw1=$HOME/data/2018-12-03_IscaW1/Ixodes-scapularis-Wikel_CONTIGS_IscaW1.fa.gz
+	quast --large \
+		--threads 120 \
+		-r ${reference} \
+		--eukaryote \
+		--labels "OmniTier 35x,OmniTier 231x,PacBio IsoSeq Tick 2 'fake transcriptome',PacBio IsoSeq Tick 2 'fake genome',PacBio JCVI ISE6 cell line,IscaW1" \
+		--rna-finding \
+		--conserved-genes-finding \
+		--circos \
+		$omnitier35 $omnitier231 $pacbio_tick2_transcriptome $pacbio_tick2_genome $pacbio_jcvi_ise6_asm2 $iscaw1
