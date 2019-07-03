@@ -1,66 +1,266 @@
-Jun-07 15:52:27.702 [main] DEBUG nextflow.cli.Launcher - $> nextflow run czbiohub/nf-kmer-similarity -latest -r olgabot/fix-fasta --fastas 's3://tick-genome/rna/pacbio-isoseq/2018-06-07/fake_genome_and_transcriptome/tick*.fake_ref_transcriptome.fasta' --one_signature_per_record --outdir 's3://tick-genome/rna/pacbio-isoseq/2018-06-07/fake_genome_and_transcriptome/transcriptome_kmer_similarity/' -work-dir 's3://tick-genome/nextflow-intermediates/' -profile czbiohub,awsbatch
-Jun-07 15:52:27.872 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 19.03.0-edge
-Jun-07 15:52:28.917 [main] DEBUG nextflow.scm.AssetManager - Git config: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/.git/config; branch: master; remote: origin; url: https://github.com/czbiohub/nf-kmer-similarity.git
-Jun-07 15:52:28.930 [main] DEBUG nextflow.scm.AssetManager - Git config: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/.git/config; branch: master; remote: origin; url: https://github.com/czbiohub/nf-kmer-similarity.git
-Jun-07 15:52:28.930 [main] INFO  nextflow.cli.CmdRun - Pulling czbiohub/nf-kmer-similarity ...
-Jun-07 15:52:28.931 [main] DEBUG nextflow.scm.AssetManager - Pull pipeline czbiohub/nf-kmer-similarity  -- Using local path: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity
-Jun-07 15:52:29.730 [main] DEBUG nextflow.scm.AssetManager - Git config: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/.git/config; branch: master; remote: origin; url: https://github.com/czbiohub/nf-kmer-similarity.git
-Jun-07 15:52:29.731 [main] INFO  nextflow.cli.CmdRun - Launching `czbiohub/nf-kmer-similarity` [lonely_tesla] - revision: 804dae51e2 [olgabot/fix-fasta]
-Jun-07 15:52:29.744 [main] DEBUG nextflow.config.ConfigBuilder - Found config home: /Users/olgabot/.nextflow/config
-Jun-07 15:52:29.744 [main] DEBUG nextflow.config.ConfigBuilder - Found config base: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/nextflow.config
-Jun-07 15:52:29.745 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/olgabot/.nextflow/config
-Jun-07 15:52:29.746 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/nextflow.config
-Jun-07 15:52:29.753 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `czbiohub,awsbatch`
-Jun-07 15:52:29.816 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `czbiohub,awsbatch`
-Jun-07 15:52:29.945 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [test, aws, local, docker]
-Jun-07 15:52:29.971 [main] DEBUG nextflow.cli.Launcher - Operation aborted
-nextflow.exception.AbortOperationException: Unknown configuration profile: 'czbiohub'
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:80)
-	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:74)
-	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:84)
-	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:59)
-	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:237)
-	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:249)
-	at nextflow.config.ConfigBuilder.checkValidProfile(ConfigBuilder.groovy:425)
+Jun-21 15:54:17.686 [main] DEBUG nextflow.cli.Launcher - $> nextflow run czbiohub/nf-kmer-similarity -latest '-process.container=czbiohub/nf-kmer-similarity:latest' -r olgabot/fix-fasta --fastas 's3://tick-genome/rna/2019-06-21_concatenated_scapularis_transcriptomes/*.fasta' --one_signature_per_record --outdir 's3://tick-genome/rna/2019-06-21_concatenated_scapularis_transcriptomes/transcriptome_kmer_similarity/' -work-dir 's3://tick-genome/nextflow-intermediates/' -profile czbiohub_aws -e.process.executor=awsbatch --log2_sketch_sizes 7
+Jun-21 15:54:17.842 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 19.04.0
+Jun-21 15:54:18.714 [main] DEBUG nextflow.scm.AssetManager - Git config: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/.git/config; branch: master; remote: origin; url: https://github.com/czbiohub/nf-kmer-similarity.git
+Jun-21 15:54:18.739 [main] DEBUG nextflow.scm.AssetManager - Git config: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/.git/config; branch: master; remote: origin; url: https://github.com/czbiohub/nf-kmer-similarity.git
+Jun-21 15:54:18.739 [main] INFO  nextflow.cli.CmdRun - Pulling czbiohub/nf-kmer-similarity ...
+Jun-21 15:54:18.739 [main] DEBUG nextflow.scm.AssetManager - Pull pipeline czbiohub/nf-kmer-similarity  -- Using local path: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity
+Jun-21 15:54:21.935 [main] DEBUG nextflow.scm.AssetManager - Git config: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/.git/config; branch: master; remote: origin; url: https://github.com/czbiohub/nf-kmer-similarity.git
+Jun-21 15:54:21.936 [main] INFO  nextflow.cli.CmdRun - Launching `czbiohub/nf-kmer-similarity` [elegant_varahamihira] - revision: 1c111e9dcd [olgabot/fix-fasta]
+Jun-21 15:54:21.951 [main] DEBUG nextflow.config.ConfigBuilder - Found config home: /Users/olgabot/.nextflow/config
+Jun-21 15:54:21.952 [main] DEBUG nextflow.config.ConfigBuilder - Found config base: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/nextflow.config
+Jun-21 15:54:21.953 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/olgabot/.nextflow/config
+Jun-21 15:54:21.953 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/nextflow.config
+Jun-21 15:54:21.954 [main] DEBUG nextflow.config.ConfigBuilder - Adding following variables to session environment: [process.executor:awsbatch]
+Jun-21 15:54:21.963 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `czbiohub_aws`
+Jun-21 15:54:22.023 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `czbiohub_aws`
+Jun-21 15:54:22.485 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [czbiohub_aws, hebbe, cfc, uppmax_devel, uzh, test, bigpurple, crick, uppmax, local, docker, gis, phoenix, shh, ccga, mendel, uct_hex, aws, munin, binac, prince]
+Jun-21 15:54:22.539 [main] DEBUG nextflow.Session - Session uuid: ab97669d-e63f-4666-bf6a-fe23f889f07d
+Jun-21 15:54:22.539 [main] DEBUG nextflow.Session - Run name: elegant_varahamihira
+Jun-21 15:54:22.540 [main] DEBUG nextflow.Session - Executor pool size: 8
+Jun-21 15:54:22.562 [main] DEBUG nextflow.file.FileHelper - Creating a file system instance for provider: S3FileSystemProvider
+Jun-21 15:54:22.569 [main] DEBUG nextflow.Global - Using AWS credential defined in `default` section in file: /Users/olgabot/.aws/credentials
+Jun-21 15:54:22.575 [main] DEBUG nextflow.file.FileHelper - AWS S3 config details: {secret_key=z+xZ9R.., signer_override=S3SignerType, max_connections=20, upload_storage_class=INTELLIGENT_TIERING, storage_encryption=AES256, access_key=AKIAWF.., region=us-west-2, connection_timeout=10000}
+Jun-21 15:54:33.083 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 19.04.0 build 5070
+  Modified: 24-04-2019 16:06 UTC (09:06 PDT)
+  System: Mac OS X 10.14.4
+  Runtime: Groovy 2.5.6 on Java HotSpot(TM) 64-Bit Server VM 1.8.0_131-b11
+  Encoding: UTF-8 (UTF-8)
+  Process: 90258@Olgas-MacBook-Pro.local [192.168.101.61]
+  CPUs: 8 - Mem: 16 GB (310.8 MB) - Swap: 6 GB (1.5 GB)
+Jun-21 15:54:33.474 [main] DEBUG nextflow.Session - Work-dir: s3://tick-genome/nextflow-intermediates [Mac OS X]
+Jun-21 15:54:33.474 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/bin
+Jun-21 15:54:33.850 [main] DEBUG nextflow.Session - Session start invoked
+Jun-21 15:54:33.854 [main] DEBUG nextflow.processor.TaskDispatcher - Dispatcher > start
+Jun-21 15:54:33.855 [main] DEBUG nextflow.trace.TraceFileObserver - Flow starting -- trace file: /Users/olgabot/code/tick-workflows/kmer-similarity/trace.txt
+Jun-21 15:54:33.867 [main] DEBUG nextflow.script.ScriptRunner - > Script parsing
+Jun-21 15:54:34.174 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Jun-21 15:54:34.176 [main] WARN  nextflow.script.ScriptBinding - Access to undefined parameter `help` -- Initialise it to a default value eg. `params.help = some_value`
+Jun-21 15:54:34.276 [PathVisitor-1] DEBUG nextflow.file.PathVisitor - files for syntax: glob; folder: /tick-genome/rna/2019-06-21_concatenated_scapularis_transcriptomes/; pattern: *.fasta; options: [:]
+Jun-21 15:54:34.278 [PathVisitor-1] DEBUG nextflow.file.FileHelper - Path matcher not defined by 'S3FileSystem' file system -- using default default strategy
+Jun-21 15:54:34.359 [main] INFO  nextflow.Nextflow - ==================================================================
+      _                            _       _ _         _ _
+     | |_ ___ _____ ___ ___    ___|_|_____|_| |___ ___|_| |_ _ _
+     | '_|___|     | -_|  _|  |_ -| |     | | | .'|  _| |  _| | |
+     |_,_|   |_|_|_|___|_|    |___|_|_|_|_|_|_|__,|_| |_|_| |_  |
+                                                            |___|
+
+czbiohub/nf-kmer-similarity vnull"
+==================================================================
+Jun-21 15:54:34.364 [main] INFO  nextflow.Nextflow - Pipeline Name  : czbiohub/nf-kmer-similarity
+Pipeline Version: null
+Run Name       : elegant_varahamihira
+Read Pairs     : false
+Input fastas   : s3://tick-genome/rna/2019-06-21_concatenated_scapularis_transcriptomes/*.fasta
+SRA/ENA IDs    : false
+Molecules      : dna,protein
+K-mer sizes    : 21,27,33,51
+Log2 sketch sizes: 7
+Make one signature per record?: true
+Max Memory     : 1.9 TB
+Max CPUs       : 96
+Max Time       : 10d
+Output dir     : s3://tick-genome/rna/2019-06-21_concatenated_scapularis_transcriptomes/transcriptome_kmer_similarity/
+Working dir    : /tick-genome/nextflow-intermediates
+Container Engine: docker
+Container      : czbiohub/nf-kmer-similarity:latest
+Current home   : /Users/olgabot
+Current user   : olgabot
+Current path   : /Users/olgabot/code/tick-workflows/kmer-similarity
+Script dir     : /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity
+Config Profile : czbiohub_aws
+Jun-21 15:54:34.364 [main] INFO  nextflow.Nextflow - =========================================
+Jun-21 15:54:34.423 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: awsbatch
+Jun-21 15:54:34.423 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'awsbatch'
+Jun-21 15:54:34.434 [main] DEBUG nextflow.executor.Executor - Initializing executor: awsbatch
+Jun-21 15:54:34.437 [main] INFO  nextflow.executor.Executor - [warm up] executor > awsbatch
+Jun-21 15:54:34.457 [main] DEBUG nextflow.util.ThrottlingExecutor - Creating throttling executor with opts: nextflow.util.ThrottlingExecutor$Options(poolName:AWSBatch-executor, limiter:RateLimiter[stableRate=50.0qps], poolSize:40, maxPoolSize:40, queueSize:5000, maxRetries:10, keepAlive:1m, autoThrottle:true, errorBurstDelay:1s, rampUpInterval:100, rampUpFactor:1.2, rampUpMaxRate:1.7976931348623157E308, backOffFactor:2.0, backOffMinRate:0.0166666667, retryDelay:1s)
+Jun-21 15:54:34.469 [main] DEBUG nextflow.util.ThrottlingExecutor - Creating throttling executor with opts: nextflow.util.ThrottlingExecutor$Options(poolName:AWSBatch-reaper, limiter:RateLimiter[stableRate=50.0qps], poolSize:40, maxPoolSize:40, queueSize:5000, maxRetries:10, keepAlive:1m, autoThrottle:true, errorBurstDelay:1s, rampUpInterval:100, rampUpFactor:1.2, rampUpMaxRate:1.7976931348623157E308, backOffFactor:2.0, backOffMinRate:0.0166666667, retryDelay:1s)
+Jun-21 15:54:34.470 [main] DEBUG n.cloud.aws.batch.AwsBatchExecutor - Creating parallel monitor for executor 'awsbatch' > pollInterval=10s; dumpInterval=5m
+Jun-21 15:54:34.478 [main] DEBUG nextflow.processor.TaskDispatcher - Starting monitor: ParallelPollingMonitor
+Jun-21 15:54:34.479 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: awsbatch)
+Jun-21 15:54:34.481 [main] DEBUG nextflow.executor.Executor - Invoke register for executor: awsbatch
+Jun-21 15:54:34.520 [main] DEBUG nextflow.Global - Using AWS credential defined in `default` section in file: /Users/olgabot/.aws/credentials
+Jun-21 15:54:34.605 [main] DEBUG nextflow.Session - >>> barrier register (process: get_software_versions)
+Jun-21 15:54:34.609 [main] DEBUG nextflow.processor.TaskProcessor - Creating operator > get_software_versions -- maxForks: 8
+Jun-21 15:54:34.671 [main] DEBUG nextflow.util.CacheHelper - Config settings `withName:sourmash_compute_sketch` matches process sourmash_compute_sketch
+Jun-21 15:54:34.673 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: awsbatch
+Jun-21 15:54:34.674 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'awsbatch'
+Jun-21 15:54:34.674 [main] DEBUG nextflow.executor.Executor - Initializing executor: awsbatch
+Jun-21 15:54:34.680 [main] DEBUG nextflow.Session - >>> barrier register (process: sourmash_compute_sketch)
+Jun-21 15:54:34.681 [main] DEBUG nextflow.processor.TaskProcessor - Creating *combiner* operator for each param(s) at index(es): [0, 1, 2]
+Jun-21 15:54:34.690 [main] DEBUG nextflow.processor.TaskProcessor - Creating operator > sourmash_compute_sketch -- maxForks: 8
+Jun-21 15:54:34.713 [main] DEBUG nextflow.util.CacheHelper - Config settings `withName:sourmash_compare_sketches` matches process sourmash_compare_sketches
+Jun-21 15:54:34.714 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: awsbatch
+Jun-21 15:54:34.714 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'awsbatch'
+Jun-21 15:54:34.714 [main] DEBUG nextflow.executor.Executor - Initializing executor: awsbatch
+Jun-21 15:54:34.715 [main] DEBUG nextflow.Session - >>> barrier register (process: sourmash_compare_sketches)
+Jun-21 15:54:34.715 [main] DEBUG nextflow.processor.TaskProcessor - Creating operator > sourmash_compare_sketches -- maxForks: 8
+Jun-21 15:54:34.717 [main] DEBUG nextflow.script.ScriptRunner - > Await termination 
+Jun-21 15:54:34.717 [main] DEBUG nextflow.Session - Session await
+Jun-21 15:54:35.429 [AWSBatch-executor-1] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] Found job definition name=nf-czbiohub-nf-kmer-similarity:2; container=czbiohub/nf-kmer-similarity
+Jun-21 15:54:35.614 [AWSBatch-executor-1] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=70953a7a-1b5c-4ee9-8c22-12980176569f; work-dir=s3://tick-genome/nextflow-intermediates/d0/16a3355b1795f7155497f1edf627fa
+Jun-21 15:54:35.614 [AWSBatch-executor-1] INFO  nextflow.Session - [d0/16a335] Submitted process > get_software_versions
+Jun-21 15:54:35.694 [AWSBatch-executor-8] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] Created job definition name=nf-czbiohub-nf-kmer-similarity-latest:1; container=czbiohub/nf-kmer-similarity:latest
+Jun-21 15:54:35.774 [AWSBatch-executor-3] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=6b98404f-2156-4967-86b2-0e44ed693652; work-dir=s3://tick-genome/nextflow-intermediates/b0/e0b72f093a00de489b9fe86b299885
+Jun-21 15:54:35.774 [AWSBatch-executor-3] INFO  nextflow.Session - [b0/e0b72f] Submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-7)
+Jun-21 15:54:35.779 [AWSBatch-executor-4] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=ba65f8e0-94ed-4af6-917a-919899134676; work-dir=s3://tick-genome/nextflow-intermediates/e2/5681e1d9d74f510af37e755306f3ea
+Jun-21 15:54:35.780 [AWSBatch-executor-4] INFO  nextflow.Session - [e2/5681e1] Submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-7)
+Jun-21 15:54:35.829 [AWSBatch-executor-5] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=ca7674f0-8123-41fa-a5de-44a7c103e3b3; work-dir=s3://tick-genome/nextflow-intermediates/ca/8e73103c163671fc46b4e5056376b2
+Jun-21 15:54:35.829 [AWSBatch-executor-5] INFO  nextflow.Session - [ca/8e7310] Submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-7)
+Jun-21 15:54:35.830 [AWSBatch-executor-8] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=ad89e394-9fda-44fc-bb50-25a7113b92ac; work-dir=s3://tick-genome/nextflow-intermediates/c0/6d56aa14137f3047acd529032dae5c
+Jun-21 15:54:35.830 [AWSBatch-executor-8] INFO  nextflow.Session - [c0/6d56aa] Submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-7)
+Jun-21 15:54:35.831 [AWSBatch-executor-9] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=30255121-7ca6-4f42-a64a-70aa593b5e16; work-dir=s3://tick-genome/nextflow-intermediates/b1/59087ff892d348657b725819572026
+Jun-21 15:54:35.831 [AWSBatch-executor-9] INFO  nextflow.Session - [b1/59087f] Submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-7)
+Jun-21 15:54:35.834 [AWSBatch-executor-7] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=c075e1bd-6909-4122-8f83-1de852577595; work-dir=s3://tick-genome/nextflow-intermediates/ce/4635fc595723166544ccec613b4b14
+Jun-21 15:54:35.834 [AWSBatch-executor-7] INFO  nextflow.Session - [ce/4635fc] Submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-7)
+Jun-21 15:54:35.837 [AWSBatch-executor-6] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=71e67e1d-94de-45a1-9788-30a699654d0b; work-dir=s3://tick-genome/nextflow-intermediates/73/fba4c2f7e71cbcf5529f6b4960fc33
+Jun-21 15:54:35.837 [AWSBatch-executor-6] INFO  nextflow.Session - [73/fba4c2] Submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-7)
+Jun-21 15:54:35.875 [AWSBatch-executor-2] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=d3d9e453-da26-4eaa-aa2b-05f7e7487b19; work-dir=s3://tick-genome/nextflow-intermediates/f0/8a2e040225f372c8c989d8508d621b
+Jun-21 15:54:35.875 [AWSBatch-executor-2] INFO  nextflow.Session - [f0/8a2e04] Submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-7)
+Jun-21 15:55:14.800 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-7); status: COMPLETED; exit: 0; error: -; workDir: s3://tick-genome/nextflow-intermediates/e2/5681e1d9d74f510af37e755306f3ea]
+Jun-21 15:55:15.269 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-7); status: COMPLETED; exit: 0; error: -; workDir: s3://tick-genome/nextflow-intermediates/ce/4635fc595723166544ccec613b4b14]
+Jun-21 15:55:24.768 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 7; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-7); status: COMPLETED; exit: 0; error: -; workDir: s3://tick-genome/nextflow-intermediates/ca/8e73103c163671fc46b4e5056376b2]
+Jun-21 15:55:34.727 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 9; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-7); status: COMPLETED; exit: 0; error: -; workDir: s3://tick-genome/nextflow-intermediates/f0/8a2e040225f372c8c989d8508d621b]
+Jun-21 15:57:04.789 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-7); status: COMPLETED; exit: 0; error: -; workDir: s3://tick-genome/nextflow-intermediates/c0/6d56aa14137f3047acd529032dae5c]
+Jun-21 15:57:15.554 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-7); status: COMPLETED; exit: 0; error: -; workDir: s3://tick-genome/nextflow-intermediates/73/fba4c2f7e71cbcf5529f6b4960fc33]
+Jun-21 15:57:24.755 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 8; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-7); status: COMPLETED; exit: 0; error: -; workDir: s3://tick-genome/nextflow-intermediates/b0/e0b72f093a00de489b9fe86b299885]
+Jun-21 15:57:25.132 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 6; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-7); status: COMPLETED; exit: 0; error: -; workDir: s3://tick-genome/nextflow-intermediates/b1/59087ff892d348657b725819572026]
+Jun-21 15:57:25.270 [Actor Thread 1] DEBUG nextflow.Session - <<< barrier arrive (process: sourmash_compute_sketch)
+Jun-21 15:57:25.882 [AWSBatch-executor-27] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=d21278dd-12af-4213-8b74-037c97649f13; work-dir=s3://tick-genome/nextflow-intermediates/57/97e568decf14ae9d7776758c301f97
+Jun-21 15:57:25.882 [AWSBatch-executor-27] INFO  nextflow.Session - [57/97e568] Submitted process > sourmash_compare_sketches (molecule-dna_ksize-27_log2sketchsize-7)
+Jun-21 15:57:25.974 [AWSBatch-executor-30] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=919e9020-6fbe-4ed6-aee9-99cf8abc23c2; work-dir=s3://tick-genome/nextflow-intermediates/d5/1e016d16d48fe5f2871938bdd37926
+Jun-21 15:57:25.974 [AWSBatch-executor-30] INFO  nextflow.Session - [d5/1e016d] Submitted process > sourmash_compare_sketches (molecule-dna_ksize-33_log2sketchsize-7)
+Jun-21 15:57:26.020 [AWSBatch-executor-29] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=af30d62a-ee04-4c29-affd-a4f82d098acf; work-dir=s3://tick-genome/nextflow-intermediates/41/9f4340ae2fd4ad1bf5acf0b4a71be5
+Jun-21 15:57:26.020 [AWSBatch-executor-29] INFO  nextflow.Session - [41/9f4340] Submitted process > sourmash_compare_sketches (molecule-protein_ksize-51_log2sketchsize-7)
+Jun-21 15:57:26.023 [AWSBatch-executor-32] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=7c50eb7d-6e96-46f5-ae4d-2a6626f994fc; work-dir=s3://tick-genome/nextflow-intermediates/e8/c711f11bc3e8ea43699a335e18f1f0
+Jun-21 15:57:26.023 [AWSBatch-executor-32] INFO  nextflow.Session - [e8/c711f1] Submitted process > sourmash_compare_sketches (molecule-protein_ksize-33_log2sketchsize-7)
+Jun-21 15:57:26.030 [AWSBatch-executor-33] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=ae454a39-0869-409c-a286-4d148bf2e00c; work-dir=s3://tick-genome/nextflow-intermediates/02/9ca4db1e71d78469ed96528a96821d
+Jun-21 15:57:26.031 [AWSBatch-executor-33] INFO  nextflow.Session - [02/9ca4db] Submitted process > sourmash_compare_sketches (molecule-protein_ksize-27_log2sketchsize-7)
+Jun-21 15:57:26.034 [AWSBatch-executor-31] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=9d9ab0b8-dd8b-4fcb-8b54-3ef6d20e4534; work-dir=s3://tick-genome/nextflow-intermediates/e0/2778ad7a6ac678d1db667a719bfefb
+Jun-21 15:57:26.034 [AWSBatch-executor-31] INFO  nextflow.Session - [e0/2778ad] Submitted process > sourmash_compare_sketches (molecule-dna_ksize-21_log2sketchsize-7)
+Jun-21 15:57:26.085 [AWSBatch-executor-28] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=dd5fd3d1-db9f-45d3-871a-71d14971bbef; work-dir=s3://tick-genome/nextflow-intermediates/4f/dae1385ce29ac6d460c706ae543eca
+Jun-21 15:57:26.085 [AWSBatch-executor-28] INFO  nextflow.Session - [4f/dae138] Submitted process > sourmash_compare_sketches (molecule-dna_ksize-51_log2sketchsize-7)
+Jun-21 15:57:26.089 [AWSBatch-executor-34] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=ee35182d-b7ad-4c24-b926-d6d0f9404505; work-dir=s3://tick-genome/nextflow-intermediates/22/19a28b3d9ba923cbd88fe505640d4b
+Jun-21 15:57:26.089 [AWSBatch-executor-34] INFO  nextflow.Session - [22/19a28b] Submitted process > sourmash_compare_sketches (molecule-protein_ksize-21_log2sketchsize-7)
+Jun-21 15:57:54.793 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: get_software_versions; status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/d0/16a3355b1795f7155497f1edf627fa]
+Jun-21 15:57:55.053 [Task monitor] ERROR nextflow.processor.TaskProcessor - Error executing process > 'get_software_versions'
+
+Caused by:
+  Process `get_software_versions` terminated with an error exit status (1)
+
+Command executed:
+
+  echo null > v_pipeline.txt
+  echo 19.04.0 > v_nextflow.txt
+  multiqc && multiqc --version > v_multiqc.txt
+  fastqc && fastqc --version > v_fastqc.txt
+  sourmash info > v_sourmash.txt
+  scrape_software_versions.py > software_versions_mqc.yaml
+
+Command exit status:
+  1
+
+Command output:
+  (empty)
+
+Command error:
+  .command.sh: line 4: multiqc: command not found
+  .command.sh: line 5: fastqc: command not found
+  
+  [Ksourmash version 2.0.1.dev1+g7e1f942
+  
+  [K- loaded from path: /opt/conda/lib/python3.7/site-packages/sourmash-2.0.1.dev1+g7e1f942-py3.7-linux-x86_64.egg/sourmash
+  
+  [K
+  Traceback (most recent call last):
+    File "/usr/local/bin/scrape_software_versions.py", line 22, in <module>
+      with open(v[0]) as x:
+  FileNotFoundError: [Errno 2] No such file or directory: 'v_fastqc.txt'
+
+Work dir:
+  s3://tick-genome/nextflow-intermediates/d0/16a3355b1795f7155497f1edf627fa
+
+Tip: when you have fixed the problem you can continue the execution appending to the nextflow command line the option `-resume`
+Jun-21 15:57:55.056 [Actor Thread 16] DEBUG nextflow.Session - <<< barrier arrive (process: get_software_versions)
+Jun-21 15:57:55.101 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 15:57:55.103 [Task monitor] DEBUG nextflow.Session - Session aborted -- Cause: Process `get_software_versions` terminated with an error exit status (1)
+Jun-21 15:57:55.270 [main] DEBUG nextflow.Session - Session await > all process finished
+Jun-21 15:57:55.271 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Jun-21 15:57:55.272 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: awsbatch)
+Jun-21 15:57:55.414 [main] ERROR nextflow.script.WorkflowMetadata - Failed to invoke `workflow.onComplete` event handler
+java.io.FileNotFoundException: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/assets/email_template.txt (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileReader.<init>(FileReader.java:72)
+	at groovy.text.TemplateEngine.createTemplate(TemplateEngine.java:43)
+	at groovy.text.TemplateEngine$createTemplate.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:47)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:115)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:127)
+	at _nf_script_e7c2fc64$_run_closure9.doCall(_nf_script_e7c2fc64:461)
+	at _nf_script_e7c2fc64$_run_closure9.doCall(_nf_script_e7c2fc64)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.codehaus.groovy.runtime.callsite.PlainObjectMetaMethodSite.doInvoke(PlainObjectMetaMethodSite.java:43)
-	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:190)
-	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:58)
-	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:51)
-	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:156)
-	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:168)
-	at nextflow.config.ConfigBuilder.buildConfig0(ConfigBuilder.groovy:329)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:101)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:263)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)
+	at groovy.lang.Closure.call(Closure.java:405)
+	at groovy.lang.Closure.call(Closure.java:399)
+	at nextflow.script.WorkflowMetadata$_invokeOnComplete_closure4.doCall(WorkflowMetadata.groovy:369)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.codehaus.groovy.runtime.callsite.PlainObjectMetaMethodSite.doInvoke(PlainObjectMetaMethodSite.java:43)
-	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:190)
-	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:58)
-	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:51)
-	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:156)
-	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:176)
-	at nextflow.config.ConfigBuilder.buildGivenFiles(ConfigBuilder.groovy:282)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:101)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:263)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)
+	at groovy.lang.Closure.call(Closure.java:405)
+	at groovy.lang.Closure.call(Closure.java:421)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.each(DefaultGroovyMethods.java:2296)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.each(DefaultGroovyMethods.java:2281)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.each(DefaultGroovyMethods.java:2322)
+	at nextflow.script.WorkflowMetadata.invokeOnComplete(WorkflowMetadata.groovy:367)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.codehaus.groovy.runtime.callsite.PlainObjectMetaMethodSite.doInvoke(PlainObjectMetaMethodSite.java:43)
-	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:190)
-	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:58)
-	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:51)
-	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:156)
-	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:168)
-	at nextflow.config.ConfigBuilder.buildConfigObject(ConfigBuilder.groovy:633)
-	at nextflow.config.ConfigBuilder.build(ConfigBuilder.groovy:646)
-	at nextflow.script.ScriptRunner.<init>(ScriptRunner.groovy:121)
-	at nextflow.cli.CmdRun.run(CmdRun.groovy:228)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:101)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1217)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)
+	at org.codehaus.groovy.runtime.InvokerHelper.invokePogoMethod(InvokerHelper.java:1011)
+	at org.codehaus.groovy.runtime.InvokerHelper.invokeMethod(InvokerHelper.java:994)
+	at org.codehaus.groovy.runtime.InvokerHelper.invokeMethodSafe(InvokerHelper.java:97)
+	at nextflow.script.WorkflowMetadata$_closure3.doCall(WorkflowMetadata.groovy:233)
+	at nextflow.script.WorkflowMetadata$_closure3.call(WorkflowMetadata.groovy)
+	at nextflow.Session.shutdown0(Session.groovy:671)
+	at nextflow.Session.destroy(Session.groovy:623)
+	at nextflow.script.ScriptRunner.terminate(ScriptRunner.groovy:389)
+	at nextflow.script.ScriptRunner.execute(ScriptRunner.groovy:172)
+	at nextflow.cli.CmdRun.run(CmdRun.groovy:245)
 	at nextflow.cli.Launcher.run(Launcher.groovy:449)
 	at nextflow.cli.Launcher.main(Launcher.groovy:626)
+Jun-21 15:57:55.424 [main] WARN  n.processor.TaskPollingMonitor - Killing pending tasks (8)
+Jun-21 15:57:55.572 [AWSBatch-reaper-2] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] killing job=919e9020-6fbe-4ed6-aee9-99cf8abc23c2; response={}
+Jun-21 15:57:55.592 [AWSBatch-reaper-5] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] killing job=ae454a39-0869-409c-a286-4d148bf2e00c; response={}
+Jun-21 15:57:55.595 [AWSBatch-reaper-4] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] killing job=7c50eb7d-6e96-46f5-ae4d-2a6626f994fc; response={}
+Jun-21 15:57:56.076 [AWSBatch-reaper-1] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] killing job=d21278dd-12af-4213-8b74-037c97649f13; response={}
+Jun-21 15:57:59.156 [AWSBatch-reaper-3] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] killing job=af30d62a-ee04-4c29-affd-a4f82d098acf; response={}
+Jun-21 15:57:59.162 [AWSBatch-reaper-8] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] killing job=ee35182d-b7ad-4c24-b926-d6d0f9404505; response={}
+Jun-21 15:57:59.190 [AWSBatch-reaper-7] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] killing job=dd5fd3d1-db9f-45d3-871a-71d14971bbef; response={}
+Jun-21 15:58:01.015 [AWSBatch-reaper-6] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] killing job=9d9ab0b8-dd8b-4fcb-8b54-3ef6d20e4534; response={}
+Jun-21 15:58:01.015 [main] DEBUG nextflow.trace.StatsObserver - Workflow completed > WorkflowStats[succeedCount=8; failedCount=9; ignoredCount=0; cachedCount=0; succeedDuration=3m 34s; failedDuration=3m 10s; cachedDuration=0ms]
+Jun-21 15:58:01.016 [main] DEBUG nextflow.trace.TraceFileObserver - Flow completing -- flushing trace file
+Jun-21 15:58:01.018 [main] DEBUG nextflow.trace.ReportObserver - Flow completing -- rendering html report
+Jun-21 15:58:01.073 [main] DEBUG nextflow.trace.ReportObserver - Execution report summary data:
+  {"sourmash_compare_sketches":{"cpu":null,"mem":null,"vmem":null,"time":null,"reads":null,"writes":null,"cpuUsage":null,"memUsage":null,"timeUsage":null},"sourmash_compute_sketch":{"cpu":{"mean":90.46,"min":85.7,"q1":86.53,"q2":91.65,"q3":93.35,"max":95.4,"minLabel":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-7)","maxLabel":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-7)","q1Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-7)","q2Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-7)","q3Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-7)"},"mem":{"mean":34435584,"min":34111488,"q1":34322432,"q2":34449408,"q3":34522112,"max":34762752,"minLabel":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-7)","maxLabel":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-7)","q1Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-7)","q2Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-7)","q3Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-7)"},"vmem":{"mean":81221632,"min":79077376,"q1":79077376,"q2":79077376,"q3":79077376,"max":96231424,"minLabel":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-7)","maxLabel":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-7)","q1Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-7)","q2Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-7)","q3Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-7)"},"time":{"mean":26711,"min":16518,"q1":17933.5,"q2":27372,"q3":34197.25,"max":38689,"minLabel":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-7)","maxLabel":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-7)","q1Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-7)","q2Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-7)","q3Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-7)"},"reads":{"mean":82702494.5,"min":82702457,"q1":82702464.5,"q2":82702495,"q3":82702525,"max":82702531,"minLabel":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-7)","maxLabel":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-7)","q1Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-7)","q2Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-7)","q3Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-7)"},"writes":{"mean":27415.88,"min":26415,"q1":26418.75,"q2":27415.5,"q3":28408.75,"max":28425,"minLabel":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-7)","maxLabel":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-7)","q1Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-7)","q2Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-7)","q3Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-7)"},"cpuUsage":{"mean":90.46,"min":85.7,"q1":86.53,"q2":91.65,"q3":93.35,"max":95.4,"minLabel":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-7)","maxLabel":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-7)","q1Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-7)","q2Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-7)","q3Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-7)"},"memUsage":{"mean":0.8,"min":0.79,"q1":0.8,"q2":0.8,"q3":0.8,"max":0.81,"minLabel":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-7)","maxLabel":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-7)","q1Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-7)","q2Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-7)","q3Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-7)"},"timeUsage":{"mean":0.37,"min":0.23,"q1":0.25,"q2":0.38,"q3":0.47,"max":0.54,"minLabel":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-7)","maxLabel":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-7)","q1Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-7)","q2Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-7)","q3Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-7)"}},"get_software_versions":{"cpu":null,"mem":null,"vmem":null,"time":{"mean":190152,"min":190152,"q1":190152,"q2":190152,"q3":190152,"max":190152,"minLabel":"get_software_versions","maxLabel":"get_software_versions","q1Label":"get_software_versions","q2Label":"get_software_versions","q3Label":"get_software_versions"},"reads":null,"writes":null,"cpuUsage":null,"memUsage":null,"timeUsage":{"mean":2.64,"min":2.64,"q1":2.64,"q2":2.64,"q3":2.64,"max":2.64,"minLabel":"get_software_versions","maxLabel":"get_software_versions","q1Label":"get_software_versions","q2Label":"get_software_versions","q3Label":"get_software_versions"}}}
+Jun-21 15:58:02.013 [main] DEBUG nextflow.trace.TimelineObserver - Flow completing -- rendering html timeline
+Jun-21 15:58:02.061 [main] DEBUG nextflow.CacheDB - Closing CacheDB done
+Jun-21 15:58:02.065 [main] DEBUG nextflow.Session - AWS S3 uploader shutdown
+Jun-21 15:58:02.085 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

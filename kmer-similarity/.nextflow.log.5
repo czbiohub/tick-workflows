@@ -1,1 +1,61 @@
-Jun-07 15:51:53.910 [main] DEBUG nextflow.cli.Launcher - $> nextflow run -h
+Jun-14 14:16:39.457 [main] DEBUG nextflow.cli.Launcher - $> nextflow run czbiohub/nf-kmer-similarity -latest -r olgabot/fix-fasta --fastas 's3://tick-genome/rna/pacbio-isoseq/2018-06-07/fake_genome_and_transcriptome/*.fake_ref_transcriptome.fasta' --one_signature_per_record --outdir 's3://tick-genome/rna/pacbio-isoseq/2018-06-07/fake_genome_and_transcriptome/transcriptome_kmer_similarity/' -work-dir 's3://tick-genome/nextflow-intermediates/' -profile czbiohub_aws -e.process.executor=awsbatch --log2_sketch_sizes 8,9
+Jun-14 14:16:39.599 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 19.04.0
+Jun-14 14:16:40.586 [main] DEBUG nextflow.scm.AssetManager - Git config: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/.git/config; branch: master; remote: origin; url: https://github.com/czbiohub/nf-kmer-similarity.git
+Jun-14 14:16:40.596 [main] DEBUG nextflow.scm.AssetManager - Git config: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/.git/config; branch: master; remote: origin; url: https://github.com/czbiohub/nf-kmer-similarity.git
+Jun-14 14:16:40.596 [main] INFO  nextflow.cli.CmdRun - Pulling czbiohub/nf-kmer-similarity ...
+Jun-14 14:16:40.596 [main] DEBUG nextflow.scm.AssetManager - Pull pipeline czbiohub/nf-kmer-similarity  -- Using local path: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity
+Jun-14 14:16:41.603 [main] DEBUG nextflow.scm.AssetManager - Git config: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/.git/config; branch: master; remote: origin; url: https://github.com/czbiohub/nf-kmer-similarity.git
+Jun-14 14:16:41.603 [main] INFO  nextflow.cli.CmdRun - Launching `czbiohub/nf-kmer-similarity` [amazing_bohr] - revision: 1c111e9dcd [olgabot/fix-fasta]
+Jun-14 14:16:41.615 [main] DEBUG nextflow.config.ConfigBuilder - Found config home: /Users/olgabot/.nextflow/config
+Jun-14 14:16:41.615 [main] DEBUG nextflow.config.ConfigBuilder - Found config base: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/nextflow.config
+Jun-14 14:16:41.616 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/olgabot/.nextflow/config
+Jun-14 14:16:41.617 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/nextflow.config
+Jun-14 14:16:41.617 [main] DEBUG nextflow.config.ConfigBuilder - Adding following variables to session environment: [process.executor:awsbatch]
+Jun-14 14:16:41.627 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `czbiohub_aws`
+Jun-14 14:16:41.664 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `czbiohub_aws`
+Jun-14 14:16:42.408 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [czbiohub_aws, hebbe, cfc, uppmax_devel, uzh, test, bigpurple, crick, uppmax, local, docker, gis, phoenix, shh, ccga, mendel, uct_hex, aws, munin, binac, prince]
+Jun-14 14:16:42.451 [main] DEBUG nextflow.Session - Session uuid: 86f7f439-b1f5-4807-875c-df53cbb665ac
+Jun-14 14:16:42.451 [main] DEBUG nextflow.Session - Run name: amazing_bohr
+Jun-14 14:16:42.452 [main] DEBUG nextflow.Session - Executor pool size: 8
+Jun-14 14:16:42.468 [main] DEBUG nextflow.file.FileHelper - Creating a file system instance for provider: S3FileSystemProvider
+Jun-14 14:16:42.475 [main] DEBUG nextflow.Global - Using AWS credential defined in `default` section in file: /Users/olgabot/.aws/credentials
+Jun-14 14:16:42.479 [main] DEBUG nextflow.file.FileHelper - AWS S3 config details: {secret_key=jNS51Y.., signer_override=S3SignerType, max_connections=20, upload_storage_class=INTELLIGENT_TIERING, storage_encryption=AES256, access_key=AKIAWF.., region=us-west-2, connection_timeout=10000}
+Jun-14 14:16:52.927 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 19.04.0 build 5070
+  Modified: 24-04-2019 16:06 UTC (09:06 PDT)
+  System: Mac OS X 10.14.4
+  Runtime: Groovy 2.5.6 on Java HotSpot(TM) 64-Bit Server VM 1.8.0_131-b11
+  Encoding: UTF-8 (UTF-8)
+  Process: 42977@Olgas-MacBook-Pro.local [192.168.101.225]
+  CPUs: 8 - Mem: 16 GB (1.4 GB) - Swap: 6 GB (604.8 MB)
+Jun-14 14:16:53.351 [main] ERROR nextflow.cli.Launcher - @unknown
+com.amazonaws.services.s3.model.AmazonS3Exception: Access Denied (Service: Amazon S3; Status Code: 403; Error Code: AccessDenied; Request ID: C19221F14E8B7F01; S3 Extended Request ID: pQ8txzUJid5vz6NACT2hSrjUY/KC3vEkbTaKy5kmZ3Y0Y+BRsA/8mS18y/XwuqRBSm9UjePDZIQ=)
+	at com.amazonaws.http.AmazonHttpClient$RequestExecutor.handleErrorResponse(AmazonHttpClient.java:1695)
+	at com.amazonaws.http.AmazonHttpClient$RequestExecutor.executeOneRequest(AmazonHttpClient.java:1350)
+	at com.amazonaws.http.AmazonHttpClient$RequestExecutor.executeHelper(AmazonHttpClient.java:1101)
+	at com.amazonaws.http.AmazonHttpClient$RequestExecutor.doExecute(AmazonHttpClient.java:758)
+	at com.amazonaws.http.AmazonHttpClient$RequestExecutor.executeWithTimer(AmazonHttpClient.java:732)
+	at com.amazonaws.http.AmazonHttpClient$RequestExecutor.execute(AmazonHttpClient.java:714)
+	at com.amazonaws.http.AmazonHttpClient$RequestExecutor.access$500(AmazonHttpClient.java:674)
+	at com.amazonaws.http.AmazonHttpClient$RequestExecutionBuilderImpl.execute(AmazonHttpClient.java:656)
+	at com.amazonaws.http.AmazonHttpClient.execute(AmazonHttpClient.java:520)
+	at com.amazonaws.services.s3.AmazonS3Client.invoke(AmazonS3Client.java:4705)
+	at com.amazonaws.services.s3.AmazonS3Client.invoke(AmazonS3Client.java:4652)
+	at com.amazonaws.services.s3.AmazonS3Client.putObject(AmazonS3Client.java:1807)
+	at com.amazonaws.services.s3.AmazonS3Client.putObject(AmazonS3Client.java:1665)
+	at com.upplication.s3fs.AmazonS3Client.putObject(AmazonS3Client.java:123)
+	at com.upplication.s3fs.S3FileSystemProvider.createDirectory(S3FileSystemProvider.java:464)
+	at java.nio.file.Files.createDirectory(Files.java:674)
+	at java.nio.file.Files.createAndCheckIsDirectory(Files.java:781)
+	at java.nio.file.Files.createDirectories(Files.java:727)
+	at java_nio_file_Files$createDirectories.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:47)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:115)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:135)
+	at nextflow.extension.FilesEx.mkdirs(FilesEx.groovy:490)
+	at nextflow.Session.init(Session.groovy:331)
+	at nextflow.script.ScriptRunner.init(ScriptRunner.groovy:256)
+	at nextflow.script.ScriptRunner.execute(ScriptRunner.groovy:160)
+	at nextflow.cli.CmdRun.run(CmdRun.groovy:245)
+	at nextflow.cli.Launcher.run(Launcher.groovy:449)
+	at nextflow.cli.Launcher.main(Launcher.groovy:626)

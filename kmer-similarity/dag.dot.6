@@ -1,0 +1,114 @@
+digraph "dag" {
+p0 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.empty"];
+p7 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="concat"];
+p0 -> p7 [label="sra_ch"];
+
+p1 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.empty"];
+p7 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="concat"];
+p1 -> p7 [label="samples_ch"];
+
+p2 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.empty"];
+p7 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="concat"];
+p2 -> p7 [label="read_pairs_ch"];
+
+p3 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.empty"];
+p4 [shape=point];
+p3 -> p4;
+
+p5 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.fromPath"];
+p6 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p5 -> p6;
+
+p6 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p7 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="concat"];
+p6 -> p7 [label="fastas_ch"];
+
+p7 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="concat"];
+p8 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+p7 -> p8;
+
+p8 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+p9 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p8 -> p9;
+
+p9 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p11 [label="fastqc"];
+p9 -> p11 [label="read_files_fastqc"];
+
+p9 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p12 [label="fastp"];
+p9 -> p12 [label="read_files_trimming"];
+
+p10 [label="get_software_versions"];
+p25 [label="multiqc"];
+p10 -> p25 [label="software_versions_yaml"];
+
+p11 [label="fastqc"];
+p22 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p11 -> p22 [label="fastqc_results"];
+
+p12 [label="fastp"];
+p13 [shape=point];
+p12 -> p13 [label="fastp_results"];
+
+p12 [label="fastp"];
+p14 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p12 -> p14 [label="sample_ids"];
+
+p12 [label="fastp"];
+p15 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p12 -> p15 [label="read1_trimmed"];
+
+p12 [label="fastp"];
+p16 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p12 -> p16 [label="read2_trimmed"];
+
+p14 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p19 [label="sourmash_compute_sketch"];
+p14 -> p19;
+
+p15 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p19 [label="sourmash_compute_sketch"];
+p15 -> p19;
+
+p16 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p19 [label="sourmash_compute_sketch"];
+p16 -> p19;
+
+p17 [shape=point,label="",fixedsize=true,width=0.1];
+p19 [label="sourmash_compute_sketch"];
+p17 -> p19;
+
+p18 [shape=point,label="",fixedsize=true,width=0.1];
+p19 [label="sourmash_compute_sketch"];
+p18 -> p19;
+
+p19 [label="sourmash_compute_sketch"];
+p20 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p19 -> p20 [label="sourmash_sketches"];
+
+p20 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p21 [label="sourmash_compare_sketches"];
+p20 -> p21;
+
+p22 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p25 [label="multiqc"];
+p22 -> p25;
+
+p23 [shape=point,label="",fixedsize=true,width=0.1];
+p25 [label="multiqc"];
+p23 -> p25 [label="multiqc_config"];
+
+p24 [shape=point,label="",fixedsize=true,width=0.1];
+p25 [label="multiqc"];
+p24 -> p25 [label="workflow_summary"];
+
+p25 [label="multiqc"];
+p26 [shape=point];
+p25 -> p26 [label="multiqc_report"];
+
+p27 [shape=point,label="",fixedsize=true,width=0.1];
+p28 [label="output_documentation"];
+p27 -> p28 [label="output_docs"];
+
+}

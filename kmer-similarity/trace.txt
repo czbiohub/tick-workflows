@@ -1,2 +1,36 @@
 task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
-10	04/364ba3	-	output_documentation (null)	FAILED	-	-	-	-	-	-	-	-	-
+6	01/7c48b3	8cd15306-263d-4585-8d09-d4335e7d241c	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-true)	FAILED	1	2019-06-21 16:10:18.936	29.2s	20.2s	-	-	-	-	-
+4	ad/3e83cc	f7018b02-83e8-45f1-816a-522efb328832	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-true)	FAILED	1	2019-06-21 16:10:18.986	29.4s	20.4s	-	-	-	-	-
+9	ef/ecccb9	36accdec-bee2-45c9-9f0e-ba7a994ed50e	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-true)	FAILED	1	2019-06-21 16:10:18.990	29.5s	20.5s	-	-	-	-	-
+3	63/9d3fef	45e32dab-46db-4616-9185-86f76bfa0aec	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-true)	FAILED	1	2019-06-21 16:10:18.997	29.6s	20.6s	-	-	-	-	-
+5	1b/6eda2c	e59a484d-b420-487a-ab59-c668d1241383	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-true)	FAILED	1	2019-06-21 16:10:18.997	29.6s	20.7s	-	-	-	-	-
+2	2e/fa4ee3	f0a9e865-b7ea-4959-8dda-1abe5a048c54	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-true)	FAILED	1	2019-06-21 16:10:19.038	29.7s	20.7s	-	-	-	-	-
+8	a1/7372f3	26124a15-4b3b-4754-a171-a31f7e5cb129	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-true)	FAILED	1	2019-06-21 16:10:19.038	29.8s	20.8s	-	-	-	-	-
+7	59/c30bab	f21c45b4-2723-46a5-9e87-e210dcbafb85	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-true)	FAILED	1	2019-06-21 16:10:19.053	29.8s	20.9s	-	-	-	-	-
+10	29/e056d1	e03d09fd-f276-4868-9f9e-e2e3994d2a78	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-true)	FAILED	1	2019-06-21 16:10:48.605	29.5s	20.1s	-	-	-	-	-
+11	b1/63118a	860a5d9a-ffdc-488e-a624-b0332d7ae580	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-true)	FAILED	1	2019-06-21 16:10:48.934	29.4s	20.4s	-	-	-	-	-
+13	26/2af0b7	5ae16e8f-c2a1-4cd2-acf8-18cfc4d4e71a	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-true)	FAILED	1	2019-06-21 16:10:48.971	29.5s	20.5s	-	-	-	-	-
+12	8b/e743fe	3681e939-58b1-4450-ac93-161591eda0f3	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-true)	FAILED	1	2019-06-21 16:10:49.035	29.5s	20.6s	-	-	-	-	-
+14	fd/f790fe	70f1535a-b12b-4d10-9ff6-353e5f4da87f	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-true)	FAILED	1	2019-06-21 16:10:49.164	29.4s	20.7s	-	-	-	-	-
+17	b4/bf4530	1d695214-154e-477c-a929-7468f8eec54d	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-true)	FAILED	1	2019-06-21 16:10:49.238	29.5s	20.7s	-	-	-	-	-
+15	bf/fe408e	1e24ce2e-08b2-4ab4-b4a4-3713ddc9d1e0	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-true)	FAILED	1	2019-06-21 16:10:49.253	30s	21.3s	-	-	-	-	-
+16	3a/eace4e	1eeb1d1a-b024-4ee9-9157-7022e02a66de	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-true)	FAILED	1	2019-06-21 16:10:49.297	30.1s	11.4s	-	-	-	-	-
+1	e8/a43b27	956004d4-9ad3-4085-92a0-7cd362fbacd3	get_software_versions	FAILED	1	2019-06-21 16:10:18.967	1m 29s	1m 20s	-	-	-	-	-
+18	8b/018580	2e58b764-453d-4f94-9548-0a89b4bde630	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-true)	FAILED	1	2019-06-21 16:11:18.636	29.6s	10.3s	-	-	-	-	-
+19	0d/690a61	58d61dd8-26bd-43ad-9efc-bb3a2b1061b9	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-true)	FAILED	1	2019-06-21 16:11:18.936	29.3s	10.4s	-	-	-	-	-
+20	c1/303bd5	82ac477e-89fa-4877-9d69-d3904a20b2c1	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-true)	FAILED	1	2019-06-21 16:11:18.967	29.4s	10.4s	-	-	-	-	-
+21	4d/544786	f5c30dda-5dac-4f66-9d2f-8fd084e26be4	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-true)	FAILED	1	2019-06-21 16:11:19.076	29.4s	10.5s	-	-	-	-	-
+22	28/0a4e75	91a1ed2d-2916-4c75-9157-6008abb72e44	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-true)	FAILED	1	2019-06-21 16:11:19.100	29.6s	10.7s	-	-	-	-	-
+23	21/c602b4	dd25c13a-275c-419c-8fde-7b63579040f4	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-true)	FAILED	1	2019-06-21 16:11:19.128	29.6s	10.8s	-	-	-	-	-
+24	ad/15d509	35eba3fc-d677-49b4-a700-5baba5340390	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-true)	FAILED	1	2019-06-21 16:11:19.715	29.1s	10.9s	-	-	-	-	-
+25	d8/8651f4	a5ce7fe8-e671-4cd0-bf16-9aa0a5a443da	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-true)	FAILED	1	2019-06-21 16:11:19.785	29.1s	11s	-	-	-	-	-
+26	c3/26cc9d	e8e9f024-315e-4cc8-874d-d326de954207	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-true)	FAILED	1	2019-06-21 16:11:48.732	29.3s	18.8s	-	-	-	-	-
+27	0b/5031de	48082b36-22ef-402d-9176-ed0dbccebbc9	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-true)	FAILED	1	2019-06-21 16:11:48.917	29.7s	19.4s	-	-	-	-	-
+28	a7/e51c95	4ad490b9-a448-44a1-ab27-0bffb7b10835	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-true)	FAILED	1	2019-06-21 16:11:48.941	29.8s	19.4s	-	-	-	-	-
+29	1d/65b53b	79e5b62c-be82-4b44-90a8-6ac91f7ea13d	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-true)	FAILED	1	2019-06-21 16:11:48.944	29.9s	19.5s	-	-	-	-	-
+30	11/5b8e5d	4f679993-c6ed-4a41-9707-29e0a5960720	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-true)	FAILED	1	2019-06-21 16:11:49.100	29.8s	19.6s	-	-	-	-	-
+33	3d/052da2	1a9640bb-b1ea-48e2-a798-66adbc405473	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-true)	ABORTED	-	2019-06-21 16:11:49.343	-	-	-	-	-	-	-
+32	9d/d0438c	202cfb13-b147-4781-8aaf-f4d4bbd3a666	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-true)	ABORTED	-	2019-06-21 16:11:49.394	-	-	-	-	-	-	-
+31	a1/cbb0c5	c1722dd7-d94b-4516-b0e5-9971cb5de46f	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-true)	FAILED	1	2019-06-21 16:11:49.320	29.6s	19.7s	-	-	-	-	-
+33	3d/052da2	1a9640bb-b1ea-48e2-a798-66adbc405473	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-true)	FAILED	1	2019-06-21 16:11:49.343	29.7s	19.7s	-	-	-	-	-
+32	9d/d0438c	202cfb13-b147-4781-8aaf-f4d4bbd3a666	sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-true)	FAILED	1	2019-06-21 16:11:49.394	29.7s	19.8s	-	-	-	-	-

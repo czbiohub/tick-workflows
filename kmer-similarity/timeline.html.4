@@ -1,0 +1,452 @@
+<!doctype html>
+<!--
+  ~ Copyright 2013-2019, Centre for Genomic Regulation (CRG)
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<script type="text/javascript">
+var prot = (("https:" == document.location.protocol) ? "https://" : "http://");
+document.write(unescape("%3Cscript src='" + prot + "code.jquery.com/jquery-latest.min.js' type='text/javascript' %3E%3C/script%3E"));
+document.write(unescape("%3Cscript src='" + prot + "d3js.org/d3.v3.min.js' charset='utf-8' type='text/javascript' %3E%3C/script%3E"));
+document.write(unescape("%3Cscript src='" + prot + "cdn.rawgit.com/nextflow-io/d3-timeline/82622c4cc35bac7283b3a317826b0709ac1ae476/src/d3-timeline.js' type='text/javascript' %3E%3C/script%3E"));
+</script>
+<style type="text/css">
+* {
+  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+.axis path,
+.axis line {
+fill: none;
+  stroke: black;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  font-size: 10px;
+}
+
+div#timeline g text {
+  font-size: 13px;
+}
+
+text.timeline-label {
+  font-size: 13px;
+}
+
+#timeline2 .axis {
+  transform: translate(0px,30px);
+  -ms-transform: translate(0px,30px); /* IE 9 */
+  -webkit-transform: translate(0px,30px); /* Safari and Chrome */
+  -o-transform: translate(0px,30px); /* Opera */
+  -moz-transform: translate(0px,30px); /* Firefox */
+}
+
+.coloredDiv {
+  height:20px; width:20px; float:left;
+}
+
+#footer {
+  padding-top: 3em; color: #bfbfbf; font-size: 13px;
+}
+
+#footer a:visited {
+  color: #bfbfbf;
+  text-decoration: underline;
+}
+</style>
+<script type="text/javascript">
+var handler=null;
+// see https://github.com/mbostock/d3/wiki/Ordinal-Scales#category20c
+var colors = d3.scale.category20c().domain(d3.range(0,20)).range()
+
+function c0(index) { return "#9c9c9c"; }
+function c1(index) { return "#bdbdbd"; }
+function c2(index) { return colors[index % 16]; } // <-- note: uses only the first 16 colors
+
+var elapsed="17m 9s"
+var beginningMillis=1559952332719;
+var endingMillis=1559953361934;
+var data=[
+{"label": "get_software_versions", "times": [{"starting_time": 1559952334661, "ending_time": 1559952993605, "color":c1(0)}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952334658, "ending_time": 1559952873659, "color":c1(1)}, {"starting_time": 1559952873659, "ending_time": 1559952873809, "color":c2(1), "label": "8m 59s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559952334714, "ending_time": 1559952873850, "color":c1(1)}, {"starting_time": 1559952873850, "ending_time": 1559952873895, "color":c2(1), "label": "8m 59s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559952334715, "ending_time": 1559952873938, "color":c1(1)}, {"starting_time": 1559952873938, "ending_time": 1559952873984, "color":c2(1), "label": "8m 59s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952334728, "ending_time": 1559952874029, "color":c1(1)}, {"starting_time": 1559952874029, "ending_time": 1559952874073, "color":c2(1), "label": "8m 59s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952334731, "ending_time": 1559952874220, "color":c1(1)}, {"starting_time": 1559952874220, "ending_time": 1559952874263, "color":c2(1), "label": "9m \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559952334744, "ending_time": 1559952874308, "color":c1(1)}, {"starting_time": 1559952874308, "ending_time": 1559952874350, "color":c2(1), "label": "9m \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952334745, "ending_time": 1559952863583, "color":c1(1)}, {"starting_time": 1559952863583, "ending_time": 1559952863802, "color":c2(1), "label": "8m 49s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952334755, "ending_time": 1559952874425, "color":c1(1)}, {"starting_time": 1559952874425, "ending_time": 1559952874469, "color":c2(1), "label": "9m \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559952334755, "ending_time": 1559952874513, "color":c1(1)}, {"starting_time": 1559952874513, "ending_time": 1559952874557, "color":c2(1), "label": "9m \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559952334758, "ending_time": 1559952874693, "color":c1(1)}, {"starting_time": 1559952874693, "ending_time": 1559952874742, "color":c2(1), "label": "9m \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559952334758, "ending_time": 1559952874784, "color":c1(1)}, {"starting_time": 1559952874784, "ending_time": 1559952874826, "color":c2(1), "label": "9m \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952334758, "ending_time": 1559952874604, "color":c1(1)}, {"starting_time": 1559952874604, "ending_time": 1559952874648, "color":c2(1), "label": "9m \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952334769, "ending_time": 1559952874865, "color":c1(1)}, {"starting_time": 1559952874865, "ending_time": 1559952874922, "color":c2(1), "label": "9m \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559952334779, "ending_time": 1559952874968, "color":c1(1)}, {"starting_time": 1559952874968, "ending_time": 1559952875013, "color":c2(1), "label": "9m \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559952334788, "ending_time": 1559952875063, "color":c1(1)}, {"starting_time": 1559952875063, "ending_time": 1559952875105, "color":c2(1), "label": "9m \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952334817, "ending_time": 1559952875149, "color":c1(1)}, {"starting_time": 1559952875149, "ending_time": 1559952875193, "color":c2(1), "label": "9m \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-9)", "times": [{"starting_time": 1559952334818, "ending_time": 1559952875236, "color":c1(1)}, {"starting_time": 1559952875236, "ending_time": 1559952875278, "color":c2(1), "label": "9m \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559952334824, "ending_time": 1559952875321, "color":c1(1)}, {"starting_time": 1559952875321, "ending_time": 1559952875362, "color":c2(1), "label": "9m 1s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559952334847, "ending_time": 1559952875406, "color":c1(1)}, {"starting_time": 1559952875406, "ending_time": 1559952875473, "color":c2(1), "label": "9m 1s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952334850, "ending_time": 1559952875516, "color":c1(1)}, {"starting_time": 1559952875516, "ending_time": 1559952875557, "color":c2(1), "label": "9m 1s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952334866, "ending_time": 1559952875602, "color":c1(1)}, {"starting_time": 1559952875602, "ending_time": 1559952875643, "color":c2(1), "label": "9m 1s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-9)", "times": [{"starting_time": 1559952334877, "ending_time": 1559952875684, "color":c1(1)}, {"starting_time": 1559952875684, "ending_time": 1559952875728, "color":c2(1), "label": "9m 1s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952334896, "ending_time": 1559952863992, "color":c1(1)}, {"starting_time": 1559952863992, "ending_time": 1559952864036, "color":c2(1), "label": "8m 49s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952334916, "ending_time": 1559952875769, "color":c1(1)}, {"starting_time": 1559952875769, "ending_time": 1559952875812, "color":c2(1), "label": "9m 1s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559952334925, "ending_time": 1559952875853, "color":c1(1)}, {"starting_time": 1559952875853, "ending_time": 1559952875899, "color":c2(1), "label": "9m 1s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559952334980, "ending_time": 1559952876026, "color":c1(1)}, {"starting_time": 1559952876026, "ending_time": 1559952876070, "color":c2(1), "label": "9m 1s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952334980, "ending_time": 1559952875942, "color":c1(1)}, {"starting_time": 1559952875942, "ending_time": 1559952875984, "color":c2(1), "label": "9m 1s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952334994, "ending_time": 1559952864078, "color":c1(1)}, {"starting_time": 1559952864078, "ending_time": 1559952864133, "color":c2(1), "label": "8m 49s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559952335063, "ending_time": 1559952876113, "color":c1(1)}, {"starting_time": 1559952876113, "ending_time": 1559952876158, "color":c2(1), "label": "9m 1s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559952335089, "ending_time": 1559952876204, "color":c1(1)}, {"starting_time": 1559952876204, "ending_time": 1559952876259, "color":c2(1), "label": "9m 1s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559952335094, "ending_time": 1559952876307, "color":c1(1)}, {"starting_time": 1559952876307, "ending_time": 1559952876350, "color":c2(1), "label": "9m 1s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952335099, "ending_time": 1559952876392, "color":c1(1)}, {"starting_time": 1559952876392, "ending_time": 1559952876435, "color":c2(1), "label": "9m 1s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952335112, "ending_time": 1559952876483, "color":c1(1)}, {"starting_time": 1559952876483, "ending_time": 1559952876530, "color":c2(1), "label": "9m 1s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952335136, "ending_time": 1559952876574, "color":c1(1)}, {"starting_time": 1559952876574, "ending_time": 1559952876619, "color":c2(1), "label": "9m 1s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559952335145, "ending_time": 1559952876662, "color":c1(1)}, {"starting_time": 1559952876662, "ending_time": 1559952876706, "color":c2(1), "label": "9m 2s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-9)", "times": [{"starting_time": 1559952335165, "ending_time": 1559952876747, "color":c1(1)}, {"starting_time": 1559952876747, "ending_time": 1559952876789, "color":c2(1), "label": "9m 2s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559952335177, "ending_time": 1559952876833, "color":c1(1)}, {"starting_time": 1559952876833, "ending_time": 1559952876875, "color":c2(1), "label": "9m 2s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952335186, "ending_time": 1559952876915, "color":c1(1)}, {"starting_time": 1559952876915, "ending_time": 1559952876955, "color":c2(1), "label": "9m 2s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559952335203, "ending_time": 1559952876997, "color":c1(1)}, {"starting_time": 1559952876997, "ending_time": 1559952877038, "color":c2(1), "label": "9m 2s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559952335258, "ending_time": 1559952877084, "color":c1(1)}, {"starting_time": 1559952877084, "ending_time": 1559952877133, "color":c2(1), "label": "9m 2s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559952335269, "ending_time": 1559952877174, "color":c1(1)}, {"starting_time": 1559952877174, "ending_time": 1559952877213, "color":c2(1), "label": "9m 2s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952335305, "ending_time": 1559952877256, "color":c1(1)}, {"starting_time": 1559952877256, "ending_time": 1559952877300, "color":c2(1), "label": "9m 2s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952335308, "ending_time": 1559952877344, "color":c1(1)}, {"starting_time": 1559952877344, "ending_time": 1559952877385, "color":c2(1), "label": "9m 2s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559952335357, "ending_time": 1559952877426, "color":c1(1)}, {"starting_time": 1559952877426, "ending_time": 1559952877487, "color":c2(1), "label": "9m 2s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952335381, "ending_time": 1559952877529, "color":c1(1)}, {"starting_time": 1559952877529, "ending_time": 1559952877572, "color":c2(1), "label": "9m 2s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-9)", "times": [{"starting_time": 1559952335391, "ending_time": 1559952877615, "color":c1(1)}, {"starting_time": 1559952877615, "ending_time": 1559952877655, "color":c2(1), "label": "9m 2s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559952335408, "ending_time": 1559952877729, "color":c1(1)}, {"starting_time": 1559952877729, "ending_time": 1559952877768, "color":c2(1), "label": "9m 2s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559952335413, "ending_time": 1559952877811, "color":c1(1)}, {"starting_time": 1559952877811, "ending_time": 1559952877850, "color":c2(1), "label": "9m 2s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559952335430, "ending_time": 1559952877892, "color":c1(1)}, {"starting_time": 1559952877892, "ending_time": 1559952877933, "color":c2(1), "label": "9m 3s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559952335445, "ending_time": 1559952877975, "color":c1(1)}, {"starting_time": 1559952877975, "ending_time": 1559952878020, "color":c2(1), "label": "9m 3s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952335503, "ending_time": 1559952878061, "color":c1(1)}, {"starting_time": 1559952878061, "ending_time": 1559952878103, "color":c2(1), "label": "9m 3s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559952335516, "ending_time": 1559952878146, "color":c1(1)}, {"starting_time": 1559952878146, "ending_time": 1559952878188, "color":c2(1), "label": "9m 3s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559952335564, "ending_time": 1559952878227, "color":c1(1)}, {"starting_time": 1559952878227, "ending_time": 1559952878266, "color":c2(1), "label": "9m 3s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952335571, "ending_time": 1559952878306, "color":c1(1)}, {"starting_time": 1559952878306, "ending_time": 1559952878348, "color":c2(1), "label": "9m 3s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952335598, "ending_time": 1559952878389, "color":c1(1)}, {"starting_time": 1559952878389, "ending_time": 1559952878584, "color":c2(1), "label": "9m 3s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559952335654, "ending_time": 1559952878625, "color":c1(1)}, {"starting_time": 1559952878625, "ending_time": 1559952878677, "color":c2(1), "label": "9m 3s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-9)", "times": [{"starting_time": 1559952335827, "ending_time": 1559952878874, "color":c1(1)}, {"starting_time": 1559952878874, "ending_time": 1559952878969, "color":c2(1), "label": "9m 3s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559952338709, "ending_time": 1559952879188, "color":c1(1)}, {"starting_time": 1559952879188, "ending_time": 1559952879230, "color":c2(1), "label": "9m 1s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559952338803, "ending_time": 1559952879549, "color":c1(1)}, {"starting_time": 1559952879549, "ending_time": 1559952879588, "color":c2(1), "label": "9m 1s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559952338803, "ending_time": 1559952879370, "color":c1(1)}, {"starting_time": 1559952879370, "ending_time": 1559952879410, "color":c2(1), "label": "9m 1s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-9)", "times": [{"starting_time": 1559952338909, "ending_time": 1559952879731, "color":c1(1)}, {"starting_time": 1559952879731, "ending_time": 1559952879772, "color":c2(1), "label": "9m 1s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-9)", "times": [{"starting_time": 1559952339070, "ending_time": 1559952880236, "color":c1(1)}, {"starting_time": 1559952880236, "ending_time": 1559952880278, "color":c2(1), "label": "9m 1s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-9)", "times": [{"starting_time": 1559952339070, "ending_time": 1559952879947, "color":c1(1)}, {"starting_time": 1559952879947, "ending_time": 1559952880095, "color":c2(1), "label": "9m 1s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559952339251, "ending_time": 1559952880457, "color":c1(1)}, {"starting_time": 1559952880457, "ending_time": 1559952880595, "color":c2(1), "label": "9m 1s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952864302, "ending_time": 1559952903622, "color":c1(1)}, {"starting_time": 1559952903622, "ending_time": 1559952903773, "color":c2(1), "label": "39.5s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952864545, "ending_time": 1559952893600, "color":c1(1)}, {"starting_time": 1559952893600, "ending_time": 1559952893745, "color":c2(1), "label": "29.2s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952864765, "ending_time": 1559952903815, "color":c1(1)}, {"starting_time": 1559952903815, "ending_time": 1559952903855, "color":c2(1), "label": "39.1s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952874393, "ending_time": 1559952913638, "color":c1(1)}, {"starting_time": 1559952913638, "ending_time": 1559952913874, "color":c2(1), "label": "39.5s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559952874501, "ending_time": 1559952913912, "color":c1(1)}, {"starting_time": 1559952913912, "ending_time": 1559952913950, "color":c2(1), "label": "39.4s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559952874524, "ending_time": 1559952914084, "color":c1(1)}, {"starting_time": 1559952914084, "ending_time": 1559952914124, "color":c2(1), "label": "39.6s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952874526, "ending_time": 1559952914163, "color":c1(1)}, {"starting_time": 1559952914163, "ending_time": 1559952914204, "color":c2(1), "label": "39.7s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952874836, "ending_time": 1559952914284, "color":c1(1)}, {"starting_time": 1559952914284, "ending_time": 1559952914322, "color":c2(1), "label": "39.5s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952874837, "ending_time": 1559952914359, "color":c1(1)}, {"starting_time": 1559952914359, "ending_time": 1559952914397, "color":c2(1), "label": "39.6s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559952874848, "ending_time": 1559952914441, "color":c1(1)}, {"starting_time": 1559952914441, "ending_time": 1559952914481, "color":c2(1), "label": "39.6s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559952874986, "ending_time": 1559952914528, "color":c1(1)}, {"starting_time": 1559952914528, "ending_time": 1559952914568, "color":c2(1), "label": "39.6s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952875063, "ending_time": 1559952914606, "color":c1(1)}, {"starting_time": 1559952914606, "ending_time": 1559952914692, "color":c2(1), "label": "39.6s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559952875256, "ending_time": 1559952914734, "color":c1(1)}, {"starting_time": 1559952914734, "ending_time": 1559952914775, "color":c2(1), "label": "39.5s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952875331, "ending_time": 1559952914814, "color":c1(1)}, {"starting_time": 1559952914814, "ending_time": 1559952914850, "color":c2(1), "label": "39.5s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559952875341, "ending_time": 1559952914890, "color":c1(1)}, {"starting_time": 1559952914890, "ending_time": 1559952914929, "color":c2(1), "label": "39.6s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559952875445, "ending_time": 1559952914966, "color":c1(1)}, {"starting_time": 1559952914966, "ending_time": 1559952915005, "color":c2(1), "label": "39.6s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559952875460, "ending_time": 1559952915044, "color":c1(1)}, {"starting_time": 1559952915044, "ending_time": 1559952915081, "color":c2(1), "label": "39.6s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952875622, "ending_time": 1559952915120, "color":c1(1)}, {"starting_time": 1559952915120, "ending_time": 1559952915157, "color":c2(1), "label": "39.5s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-9)", "times": [{"starting_time": 1559952875663, "ending_time": 1559952915197, "color":c1(1)}, {"starting_time": 1559952915197, "ending_time": 1559952915236, "color":c2(1), "label": "39.6s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559952875732, "ending_time": 1559952915272, "color":c1(1)}, {"starting_time": 1559952915272, "ending_time": 1559952915310, "color":c2(1), "label": "39.6s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559952875823, "ending_time": 1559952915349, "color":c1(1)}, {"starting_time": 1559952915349, "ending_time": 1559952915386, "color":c2(1), "label": "39.6s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952875970, "ending_time": 1559952915424, "color":c1(1)}, {"starting_time": 1559952915424, "ending_time": 1559952915463, "color":c2(1), "label": "39.5s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952876069, "ending_time": 1559952915500, "color":c1(1)}, {"starting_time": 1559952915500, "ending_time": 1559952915536, "color":c2(1), "label": "39.5s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952876165, "ending_time": 1559952915573, "color":c1(1)}, {"starting_time": 1559952915573, "ending_time": 1559952915609, "color":c2(1), "label": "39.4s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-9)", "times": [{"starting_time": 1559952876199, "ending_time": 1559952915645, "color":c1(1)}, {"starting_time": 1559952915645, "ending_time": 1559952915681, "color":c2(1), "label": "39.5s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559952876293, "ending_time": 1559952915774, "color":c1(1)}, {"starting_time": 1559952915774, "ending_time": 1559952915813, "color":c2(1), "label": "39.5s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952876400, "ending_time": 1559952915850, "color":c1(1)}, {"starting_time": 1559952915850, "ending_time": 1559952915888, "color":c2(1), "label": "39.5s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559952876486, "ending_time": 1559952915925, "color":c1(1)}, {"starting_time": 1559952915925, "ending_time": 1559952915963, "color":c2(1), "label": "39.5s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559952876625, "ending_time": 1559952916001, "color":c1(1)}, {"starting_time": 1559952916001, "ending_time": 1559952916039, "color":c2(1), "label": "39.4s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559952876660, "ending_time": 1559952916080, "color":c1(1)}, {"starting_time": 1559952916080, "ending_time": 1559952916116, "color":c2(1), "label": "39.5s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559952876752, "ending_time": 1559952916155, "color":c1(1)}, {"starting_time": 1559952916155, "ending_time": 1559952916195, "color":c2(1), "label": "39.4s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952876864, "ending_time": 1559952916234, "color":c1(1)}, {"starting_time": 1559952916234, "ending_time": 1559952916273, "color":c2(1), "label": "39.4s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952876913, "ending_time": 1559952916367, "color":c1(1)}, {"starting_time": 1559952916367, "ending_time": 1559952916403, "color":c2(1), "label": "39.5s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952876985, "ending_time": 1559952916442, "color":c1(1)}, {"starting_time": 1559952916442, "ending_time": 1559952916480, "color":c2(1), "label": "39.5s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559952877172, "ending_time": 1559952916518, "color":c1(1)}, {"starting_time": 1559952916518, "ending_time": 1559952916555, "color":c2(1), "label": "39.4s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-9)", "times": [{"starting_time": 1559952877220, "ending_time": 1559952916594, "color":c1(1)}, {"starting_time": 1559952916594, "ending_time": 1559952916632, "color":c2(1), "label": "39.4s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559952877289, "ending_time": 1559952916669, "color":c1(1)}, {"starting_time": 1559952916669, "ending_time": 1559952916704, "color":c2(1), "label": "39.4s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952877365, "ending_time": 1559952916743, "color":c1(1)}, {"starting_time": 1559952916743, "ending_time": 1559952916782, "color":c2(1), "label": "39.4s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559952877495, "ending_time": 1559952943701, "color":c1(1)}, {"starting_time": 1559952943701, "ending_time": 1559952944377, "color":c2(1), "label": "1m 7s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559952877568, "ending_time": 1559952973617, "color":c1(1)}, {"starting_time": 1559952973617, "ending_time": 1559952973756, "color":c2(1), "label": "1m 36s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559952877607, "ending_time": 1559952944737, "color":c1(1)}, {"starting_time": 1559952944737, "ending_time": 1559952944777, "color":c2(1), "label": "1m 7s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952877681, "ending_time": 1559952944920, "color":c1(1)}, {"starting_time": 1559952944920, "ending_time": 1559952945096, "color":c2(1), "label": "1m 7s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952877849, "ending_time": 1559952945238, "color":c1(1)}, {"starting_time": 1559952945238, "ending_time": 1559952945276, "color":c2(1), "label": "1m 7s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559952877863, "ending_time": 1559952945417, "color":c1(1)}, {"starting_time": 1559952945417, "ending_time": 1559952945454, "color":c2(1), "label": "1m 8s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952877933, "ending_time": 1559952973803, "color":c1(1)}, {"starting_time": 1559952973803, "ending_time": 1559952973841, "color":c2(1), "label": "1m 36s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-9)", "times": [{"starting_time": 1559952878145, "ending_time": 1559952945924, "color":c1(1)}, {"starting_time": 1559952945924, "ending_time": 1559952946066, "color":c2(1), "label": "1m 8s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559952878158, "ending_time": 1559952946246, "color":c1(1)}, {"starting_time": 1559952946246, "ending_time": 1559952946284, "color":c2(1), "label": "1m 8s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559952878230, "ending_time": 1559952946322, "color":c1(1)}, {"starting_time": 1559952946322, "ending_time": 1559952946361, "color":c2(1), "label": "1m 8s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559952878276, "ending_time": 1559952946398, "color":c1(1)}, {"starting_time": 1559952946398, "ending_time": 1559952946437, "color":c2(1), "label": "1m 8s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559952878385, "ending_time": 1559952946476, "color":c1(1)}, {"starting_time": 1559952946476, "ending_time": 1559952946520, "color":c2(1), "label": "1m 8s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952878677, "ending_time": 1559952946561, "color":c1(1)}, {"starting_time": 1559952946561, "ending_time": 1559952946600, "color":c2(1), "label": "1m 8s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559952878873, "ending_time": 1559952946641, "color":c1(1)}, {"starting_time": 1559952946641, "ending_time": 1559952946680, "color":c2(1), "label": "1m 8s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559952878968, "ending_time": 1559952973975, "color":c1(1)}, {"starting_time": 1559952973975, "ending_time": 1559952974015, "color":c2(1), "label": "1m 35s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952879369, "ending_time": 1559952946719, "color":c1(1)}, {"starting_time": 1559952946719, "ending_time": 1559952946760, "color":c2(1), "label": "1m 7s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952879728, "ending_time": 1559952946881, "color":c1(1)}, {"starting_time": 1559952946881, "ending_time": 1559952946921, "color":c2(1), "label": "1m 7s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559952879728, "ending_time": 1559952946801, "color":c1(1)}, {"starting_time": 1559952946801, "ending_time": 1559952946843, "color":c2(1), "label": "1m 7s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-9)", "times": [{"starting_time": 1559952879909, "ending_time": 1559952946961, "color":c1(1)}, {"starting_time": 1559952946961, "ending_time": 1559952947017, "color":c2(1), "label": "1m 7s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559952880235, "ending_time": 1559952947059, "color":c1(1)}, {"starting_time": 1559952947059, "ending_time": 1559952947100, "color":c2(1), "label": "1m 7s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559952880595, "ending_time": 1559952947222, "color":c1(1)}, {"starting_time": 1559952947222, "ending_time": 1559952947258, "color":c2(1), "label": "1m 7s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559952880595, "ending_time": 1559952947142, "color":c1(1)}, {"starting_time": 1559952947142, "ending_time": 1559952947181, "color":c2(1), "label": "1m 7s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-9)", "times": [{"starting_time": 1559952880956, "ending_time": 1559952947305, "color":c1(1)}, {"starting_time": 1559952947305, "ending_time": 1559952947345, "color":c2(1), "label": "1m 6s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-9)", "times": [{"starting_time": 1559952881458, "ending_time": 1559952947383, "color":c1(1)}, {"starting_time": 1559952947383, "ending_time": 1559952947423, "color":c2(1), "label": "1m 6s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559952881637, "ending_time": 1559952974055, "color":c1(1)}, {"starting_time": 1559952974055, "ending_time": 1559952974097, "color":c2(1), "label": "1m 32s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-9)", "times": [{"starting_time": 1559952881637, "ending_time": 1559953013606, "color":c1(1)}, {"starting_time": 1559953013606, "ending_time": 1559953013739, "color":c2(1), "label": "2m 12s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952894430, "ending_time": 1559952974137, "color":c1(1)}, {"starting_time": 1559952974137, "ending_time": 1559952974177, "color":c2(1), "label": "1m 20s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952904246, "ending_time": 1559952974216, "color":c1(1)}, {"starting_time": 1559952974216, "ending_time": 1559952974253, "color":c2(1), "label": "1m 10s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952904377, "ending_time": 1559952974296, "color":c1(1)}, {"starting_time": 1559952974296, "ending_time": 1559952974335, "color":c2(1), "label": "1m 10s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559952914431, "ending_time": 1559952974379, "color":c1(1)}, {"starting_time": 1559952974379, "ending_time": 1559952974424, "color":c2(1), "label": "60s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952914449, "ending_time": 1559953003609, "color":c1(1)}, {"starting_time": 1559953003609, "ending_time": 1559953003755, "color":c2(1), "label": "1m 29s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559952914679, "ending_time": 1559953013865, "color":c1(1)}, {"starting_time": 1559953013865, "ending_time": 1559953013902, "color":c2(1), "label": "1m 39s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952914715, "ending_time": 1559952974464, "color":c1(1)}, {"starting_time": 1559952974464, "ending_time": 1559952974508, "color":c2(1), "label": "59.8s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952914725, "ending_time": 1559952974550, "color":c1(1)}, {"starting_time": 1559952974550, "ending_time": 1559952974593, "color":c2(1), "label": "59.9s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952914803, "ending_time": 1559952974633, "color":c1(1)}, {"starting_time": 1559952974633, "ending_time": 1559952974673, "color":c2(1), "label": "59.9s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559952914922, "ending_time": 1559952974715, "color":c1(1)}, {"starting_time": 1559952974715, "ending_time": 1559952974786, "color":c2(1), "label": "59.9s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559952915004, "ending_time": 1559952974828, "color":c1(1)}, {"starting_time": 1559952974828, "ending_time": 1559952974868, "color":c2(1), "label": "59.9s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952915043, "ending_time": 1559952974909, "color":c1(1)}, {"starting_time": 1559952974909, "ending_time": 1559952974950, "color":c2(1), "label": "59.9s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952915179, "ending_time": 1559952983593, "color":c1(1)}, {"starting_time": 1559952983593, "ending_time": 1559952983740, "color":c2(1), "label": "1m 9s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559952915225, "ending_time": 1559952974992, "color":c1(1)}, {"starting_time": 1559952974992, "ending_time": 1559952975033, "color":c2(1), "label": "59.8s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559952915311, "ending_time": 1559952975072, "color":c1(1)}, {"starting_time": 1559952975072, "ending_time": 1559952975113, "color":c2(1), "label": "59.8s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559952915385, "ending_time": 1559952975152, "color":c1(1)}, {"starting_time": 1559952975152, "ending_time": 1559952975195, "color":c2(1), "label": "59.8s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559952915421, "ending_time": 1559952975235, "color":c1(1)}, {"starting_time": 1559952975235, "ending_time": 1559952975274, "color":c2(1), "label": "59.9s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952915527, "ending_time": 1559952975313, "color":c1(1)}, {"starting_time": 1559952975313, "ending_time": 1559952975351, "color":c2(1), "label": "59.8s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-9)", "times": [{"starting_time": 1559952915582, "ending_time": 1559952975391, "color":c1(1)}, {"starting_time": 1559952975391, "ending_time": 1559952975429, "color":c2(1), "label": "59.8s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559952915652, "ending_time": 1559952975470, "color":c1(1)}, {"starting_time": 1559952975470, "ending_time": 1559952975559, "color":c2(1), "label": "59.9s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559952915737, "ending_time": 1559952975603, "color":c1(1)}, {"starting_time": 1559952975603, "ending_time": 1559952975645, "color":c2(1), "label": "59.9s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952915835, "ending_time": 1559952975683, "color":c1(1)}, {"starting_time": 1559952975683, "ending_time": 1559952975723, "color":c2(1), "label": "59.9s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952915901, "ending_time": 1559952975762, "color":c1(1)}, {"starting_time": 1559952975762, "ending_time": 1559952975802, "color":c2(1), "label": "59.9s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952915976, "ending_time": 1559952983870, "color":c1(1)}, {"starting_time": 1559952983870, "ending_time": 1559952983910, "color":c2(1), "label": "1m 8s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-9)", "times": [{"starting_time": 1559952916019, "ending_time": 1559952975842, "color":c1(1)}, {"starting_time": 1559952975842, "ending_time": 1559952975880, "color":c2(1), "label": "59.9s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559952916159, "ending_time": 1559953003819, "color":c1(1)}, {"starting_time": 1559953003819, "ending_time": 1559953003861, "color":c2(1), "label": "1m 28s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952916258, "ending_time": 1559953013941, "color":c1(1)}, {"starting_time": 1559953013941, "ending_time": 1559953013982, "color":c2(1), "label": "1m 38s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559952916397, "ending_time": 1559953004013, "color":c1(1)}, {"starting_time": 1559953004013, "ending_time": 1559953004055, "color":c2(1), "label": "1m 28s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559952916401, "ending_time": 1559953004254, "color":c1(1)}, {"starting_time": 1559953004254, "ending_time": 1559953004299, "color":c2(1), "label": "1m 28s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559952916441, "ending_time": 1559953014092, "color":c1(1)}, {"starting_time": 1559953014092, "ending_time": 1559953014132, "color":c2(1), "label": "1m 38s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559952916582, "ending_time": 1559953004339, "color":c1(1)}, {"starting_time": 1559953004339, "ending_time": 1559953004384, "color":c2(1), "label": "1m 28s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952916657, "ending_time": 1559953004423, "color":c1(1)}, {"starting_time": 1559953004423, "ending_time": 1559953004461, "color":c2(1), "label": "1m 28s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952916777, "ending_time": 1559953004501, "color":c1(1)}, {"starting_time": 1559953004501, "ending_time": 1559953004541, "color":c2(1), "label": "1m 28s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952916815, "ending_time": 1559953014172, "color":c1(1)}, {"starting_time": 1559953014172, "ending_time": 1559953014212, "color":c2(1), "label": "1m 37s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559952916882, "ending_time": 1559953004582, "color":c1(1)}, {"starting_time": 1559953004582, "ending_time": 1559953004626, "color":c2(1), "label": "1m 28s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-9)", "times": [{"starting_time": 1559952916977, "ending_time": 1559953353407, "color":c1(1)}, {"starting_time": 1559953353407, "ending_time": 1559953353633, "color":c2(1), "label": "7m 17s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559952917104, "ending_time": 1559953014253, "color":c1(1)}, {"starting_time": 1559953014253, "ending_time": 1559953014295, "color":c2(1), "label": "1m 37s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952917169, "ending_time": 1559953353765, "color":c1(1)}, {"starting_time": 1559953353765, "ending_time": 1559953353806, "color":c2(1), "label": "7m 17s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559952945775, "ending_time": 1559953014336, "color":c1(1)}, {"starting_time": 1559953014336, "ending_time": 1559953014404, "color":c2(1), "label": "1m 9s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952946360, "ending_time": 1559953004668, "color":c1(1)}, {"starting_time": 1559953004668, "ending_time": 1559953004709, "color":c2(1), "label": "58.3s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559952946395, "ending_time": 1559953014444, "color":c1(1)}, {"starting_time": 1559953014444, "ending_time": 1559953014487, "color":c2(1), "label": "1m 8s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559952946398, "ending_time": 1559953004748, "color":c1(1)}, {"starting_time": 1559953004748, "ending_time": 1559953004786, "color":c2(1), "label": "58.4s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952946490, "ending_time": 1559953004825, "color":c1(1)}, {"starting_time": 1559953004825, "ending_time": 1559953004866, "color":c2(1), "label": "58.4s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-9)", "times": [{"starting_time": 1559952946602, "ending_time": 1559953004905, "color":c1(1)}, {"starting_time": 1559953004905, "ending_time": 1559953004941, "color":c2(1), "label": "58.3s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559952946752, "ending_time": 1559953004980, "color":c1(1)}, {"starting_time": 1559953004980, "ending_time": 1559953005022, "color":c2(1), "label": "58.3s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559952946769, "ending_time": 1559953005063, "color":c1(1)}, {"starting_time": 1559953005063, "ending_time": 1559953005109, "color":c2(1), "label": "58.3s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559952946843, "ending_time": 1559953014528, "color":c1(1)}, {"starting_time": 1559953014528, "ending_time": 1559953014570, "color":c2(1), "label": "1m 8s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559952946942, "ending_time": 1559953353845, "color":c1(1)}, {"starting_time": 1559953353845, "ending_time": 1559953353884, "color":c2(1), "label": "6m 47s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952946989, "ending_time": 1559953354051, "color":c1(1)}, {"starting_time": 1559953354051, "ending_time": 1559953354091, "color":c2(1), "label": "6m 47s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559952947097, "ending_time": 1559953354128, "color":c1(1)}, {"starting_time": 1559953354128, "ending_time": 1559953354166, "color":c2(1), "label": "6m 47s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952947103, "ending_time": 1559953354207, "color":c1(1)}, {"starting_time": 1559953354207, "ending_time": 1559953354243, "color":c2(1), "label": "6m 47s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559952947233, "ending_time": 1559953354281, "color":c1(1)}, {"starting_time": 1559953354281, "ending_time": 1559953354319, "color":c2(1), "label": "6m 47s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952947265, "ending_time": 1559953354359, "color":c1(1)}, {"starting_time": 1559953354359, "ending_time": 1559953354398, "color":c2(1), "label": "6m 47s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-9)", "times": [{"starting_time": 1559952947400, "ending_time": 1559953354436, "color":c1(1)}, {"starting_time": 1559953354436, "ending_time": 1559953354479, "color":c2(1), "label": "6m 47s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559952947525, "ending_time": 1559953354647, "color":c1(1)}, {"starting_time": 1559953354647, "ending_time": 1559953354685, "color":c2(1), "label": "6m 47s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559952947538, "ending_time": 1559953354723, "color":c1(1)}, {"starting_time": 1559953354723, "ending_time": 1559953354761, "color":c2(1), "label": "6m 47s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559952947673, "ending_time": 1559953354799, "color":c1(1)}, {"starting_time": 1559953354799, "ending_time": 1559953354835, "color":c2(1), "label": "6m 47s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-9)", "times": [{"starting_time": 1559952947724, "ending_time": 1559953354870, "color":c1(1)}, {"starting_time": 1559953354870, "ending_time": 1559953354907, "color":c2(1), "label": "6m 47s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-9)", "times": [{"starting_time": 1559952947782, "ending_time": 1559953354977, "color":c1(1)}, {"starting_time": 1559953354977, "ending_time": 1559953355014, "color":c2(1), "label": "6m 47s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952974225, "ending_time": 1559953355055, "color":c1(1)}, {"starting_time": 1559953355055, "ending_time": 1559953355097, "color":c2(1), "label": "6m 21s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559952974229, "ending_time": 1559953355136, "color":c1(1)}, {"starting_time": 1559953355136, "ending_time": 1559953355175, "color":c2(1), "label": "6m 21s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952974514, "ending_time": 1559953355214, "color":c1(1)}, {"starting_time": 1559953355214, "ending_time": 1559953355252, "color":c2(1), "label": "6m 21s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559952974549, "ending_time": 1559953355580, "color":c1(1)}, {"starting_time": 1559953355580, "ending_time": 1559953355619, "color":c2(1), "label": "6m 21s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952974614, "ending_time": 1559953355656, "color":c1(1)}, {"starting_time": 1559953355656, "ending_time": 1559953355700, "color":c2(1), "label": "6m 21s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559952974644, "ending_time": 1559953355740, "color":c1(1)}, {"starting_time": 1559953355740, "ending_time": 1559953355815, "color":c2(1), "label": "6m 21s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952974856, "ending_time": 1559953355851, "color":c1(1)}, {"starting_time": 1559953355851, "ending_time": 1559953355887, "color":c2(1), "label": "6m 21s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952974859, "ending_time": 1559953355926, "color":c1(1)}, {"starting_time": 1559953355926, "ending_time": 1559953355963, "color":c2(1), "label": "6m 21s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952975049, "ending_time": 1559953356001, "color":c1(1)}, {"starting_time": 1559953356001, "ending_time": 1559953356036, "color":c2(1), "label": "6m 21s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952975077, "ending_time": 1559953356075, "color":c1(1)}, {"starting_time": 1559953356075, "ending_time": 1559953356116, "color":c2(1), "label": "6m 21s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559952975146, "ending_time": 1559953356153, "color":c1(1)}, {"starting_time": 1559953356153, "ending_time": 1559953356189, "color":c2(1), "label": "6m 21s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559952975242, "ending_time": 1559953356227, "color":c1(1)}, {"starting_time": 1559953356227, "ending_time": 1559953356264, "color":c2(1), "label": "6m 21s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559952975254, "ending_time": 1559953356306, "color":c1(1)}, {"starting_time": 1559953356306, "ending_time": 1559953356346, "color":c2(1), "label": "6m 21s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952975404, "ending_time": 1559953356382, "color":c1(1)}, {"starting_time": 1559953356382, "ending_time": 1559953356421, "color":c2(1), "label": "6m 21s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559952975464, "ending_time": 1559953356461, "color":c1(1)}, {"starting_time": 1559953356461, "ending_time": 1559953356499, "color":c2(1), "label": "6m 21s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559952975527, "ending_time": 1559953356539, "color":c1(1)}, {"starting_time": 1559953356539, "ending_time": 1559953356576, "color":c2(1), "label": "6m 21s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559952975605, "ending_time": 1559953356612, "color":c1(1)}, {"starting_time": 1559953356612, "ending_time": 1559953356649, "color":c2(1), "label": "6m 21s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559952975617, "ending_time": 1559953356694, "color":c1(1)}, {"starting_time": 1559953356694, "ending_time": 1559953356735, "color":c2(1), "label": "6m 21s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952975732, "ending_time": 1559953356774, "color":c1(1)}, {"starting_time": 1559953356774, "ending_time": 1559953356815, "color":c2(1), "label": "6m 21s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-9)", "times": [{"starting_time": 1559952975761, "ending_time": 1559953356851, "color":c1(1)}, {"starting_time": 1559953356851, "ending_time": 1559953356888, "color":c2(1), "label": "6m 21s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559952975932, "ending_time": 1559953356927, "color":c1(1)}, {"starting_time": 1559953356927, "ending_time": 1559953356965, "color":c2(1), "label": "6m 21s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559952976020, "ending_time": 1559953357002, "color":c1(1)}, {"starting_time": 1559953357002, "ending_time": 1559953357052, "color":c2(1), "label": "6m 21s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952976116, "ending_time": 1559953357094, "color":c1(1)}, {"starting_time": 1559953357094, "ending_time": 1559953357191, "color":c2(1), "label": "6m 21s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-9)", "times": [{"starting_time": 1559952976241, "ending_time": 1559953357229, "color":c1(1)}, {"starting_time": 1559953357229, "ending_time": 1559953357269, "color":c2(1), "label": "6m 21s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559952976252, "ending_time": 1559953357305, "color":c1(1)}, {"starting_time": 1559953357305, "ending_time": 1559953357347, "color":c2(1), "label": "6m 21s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559952984092, "ending_time": 1559953357385, "color":c1(1)}, {"starting_time": 1559953357385, "ending_time": 1559953357422, "color":c2(1), "label": "6m 13s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559952984400, "ending_time": 1559953357460, "color":c1(1)}, {"starting_time": 1559953357460, "ending_time": 1559953357499, "color":c2(1), "label": "6m 13s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559953004217, "ending_time": 1559953357537, "color":c1(1)}, {"starting_time": 1559953357537, "ending_time": 1559953357577, "color":c2(1), "label": "5m 53s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559953004256, "ending_time": 1559953357616, "color":c1(1)}, {"starting_time": 1559953357616, "ending_time": 1559953357651, "color":c2(1), "label": "5m 53s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559953004509, "ending_time": 1559953357687, "color":c1(1)}, {"starting_time": 1559953357687, "ending_time": 1559953357724, "color":c2(1), "label": "5m 53s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559953004734, "ending_time": 1559953357762, "color":c1(1)}, {"starting_time": 1559953357762, "ending_time": 1559953357799, "color":c2(1), "label": "5m 53s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559953004751, "ending_time": 1559953357837, "color":c1(1)}, {"starting_time": 1559953357837, "ending_time": 1559953357875, "color":c2(1), "label": "5m 53s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559953004887, "ending_time": 1559953357915, "color":c1(1)}, {"starting_time": 1559953357915, "ending_time": 1559953357951, "color":c2(1), "label": "5m 53s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-8)", "times": [{"starting_time": 1559953005026, "ending_time": 1559953357996, "color":c1(1)}, {"starting_time": 1559953357996, "ending_time": 1559953358035, "color":c2(1), "label": "5m 53s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-8)", "times": [{"starting_time": 1559953005062, "ending_time": 1559953358077, "color":c1(1)}, {"starting_time": 1559953358077, "ending_time": 1559953358114, "color":c2(1), "label": "5m 53s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559953005120, "ending_time": 1559953358151, "color":c1(1)}, {"starting_time": 1559953358151, "ending_time": 1559953358190, "color":c2(1), "label": "5m 53s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559953005286, "ending_time": 1559953358230, "color":c1(1)}, {"starting_time": 1559953358230, "ending_time": 1559953358304, "color":c2(1), "label": "5m 53s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-8)", "times": [{"starting_time": 1559953005312, "ending_time": 1559953358345, "color":c1(1)}, {"starting_time": 1559953358345, "ending_time": 1559953358387, "color":c2(1), "label": "5m 53s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559953005352, "ending_time": 1559953358442, "color":c1(1)}, {"starting_time": 1559953358442, "ending_time": 1559953358479, "color":c2(1), "label": "5m 53s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-9)", "times": [{"starting_time": 1559953005421, "ending_time": 1559953358521, "color":c1(1)}, {"starting_time": 1559953358521, "ending_time": 1559953358561, "color":c2(1), "label": "5m 53s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559953005439, "ending_time": 1559953358600, "color":c1(1)}, {"starting_time": 1559953358600, "ending_time": 1559953358678, "color":c2(1), "label": "5m 53s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-9)", "times": [{"starting_time": 1559953014166, "ending_time": 1559953358716, "color":c1(1)}, {"starting_time": 1559953358716, "ending_time": 1559953358757, "color":c2(1), "label": "5m 45s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-9)", "times": [{"starting_time": 1559953014417, "ending_time": 1559953358804, "color":c1(1)}, {"starting_time": 1559953358804, "ending_time": 1559953358848, "color":c2(1), "label": "5m 44s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559953014517, "ending_time": 1559953358894, "color":c1(1)}, {"starting_time": 1559953358894, "ending_time": 1559953358932, "color":c2(1), "label": "5m 44s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559953014608, "ending_time": 1559953358969, "color":c1(1)}, {"starting_time": 1559953358969, "ending_time": 1559953359010, "color":c2(1), "label": "5m 44s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-9)", "times": [{"starting_time": 1559953014755, "ending_time": 1559953359052, "color":c1(1)}, {"starting_time": 1559953359052, "ending_time": 1559953359094, "color":c2(1), "label": "5m 44s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559953014797, "ending_time": 1559953359132, "color":c1(1)}, {"starting_time": 1559953359132, "ending_time": 1559953359171, "color":c2(1), "label": "5m 44s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559953014866, "ending_time": 1559953359207, "color":c1(1)}, {"starting_time": 1559953359207, "ending_time": 1559953359245, "color":c2(1), "label": "5m 44s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-9)", "times": [{"starting_time": 1559953014946, "ending_time": 1559953359286, "color":c1(1)}, {"starting_time": 1559953359286, "ending_time": 1559953359323, "color":c2(1), "label": "5m 44s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-8)", "times": [{"starting_time": 1559953014951, "ending_time": 1559953359364, "color":c1(1)}, {"starting_time": 1559953359364, "ending_time": 1559953359405, "color":c2(1), "label": "5m 44s \/ -"}]},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-9)", "times": []},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-8)", "times": []},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-8)", "times": []},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-8)", "times": []},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-9)", "times": []},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-9)", "times": []},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-8)", "times": []},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-8)", "times": []},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-9)", "times": []},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-8)", "times": []},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-8)", "times": []},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-9)", "times": []},
+{"label": "sourmash_compute_sketch (tick1.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-9)", "times": []},
+{"label": "sourmash_compute_sketch (tick0.fake_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-9)", "times": []},
+{"label": "sourmash_compute_sketch (tick4.fake_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-8)", "times": []},
+{"label": "sourmash_compute_sketch (tick2.fake_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-9)", "times": []}
+]
+
+
+function getTickFormat() {
+  var MIN = 1000 * 60
+  var HOUR = MIN * 60
+  var DAY = HOUR * 24
+  var delta = (endingMillis - beginningMillis)
+
+  if( delta < 2 * MIN ) {
+    return {
+      format: d3.time.format("%S"),
+      tickTime: d3.time.seconds,
+      tickInterval: 5,
+      tickSize: 6
+    }
+  }
+
+  if( delta < 2 * HOUR ) {
+    return {
+      format: d3.time.format("%M"),
+      tickTime: d3.time.minutes,
+      tickInterval: 5,
+      tickSize: 6
+    }
+  }
+
+  if( delta < 2 * DAY ) {
+    return {
+      format: d3.time.format("%H:%M"),
+      tickTime: d3.time.hours,
+      tickInterval: 1,
+      tickSize: 6
+    }
+  }
+
+  if( delta <= 7 * DAY ) {
+    return {
+      format: d3.time.format("%b %e %H:%M"),
+      tickTime: d3.time.hours,
+      tickInterval: 6,
+      tickSize: 6
+    }
+  }
+
+  return {
+    format: d3.time.format("%b %e"),
+    tickTime: d3.time.days,
+    tickInterval: 1,
+    tickSize: 6
+  }
+}
+
+function getLabelMargin(scale) {
+    $('<span class="labelSpan" style="display: none"></span>').appendTo('body');
+
+    var labelMargin = 0
+    $.each(data, function (key, value) {
+      labelMargin = Math.max(labelMargin, $('.labelSpan').html(value.label).width());
+    });
+
+    $('.labelSpan').remove();
+
+    return (labelMargin * scale);
+}
+
+function render() {
+  handler=null;
+  $("#timeline").empty()
+  $('#label_elapsed').text(elapsed)
+  $('#label_launch').text( d3.time.format('%d %b %Y %H:%M')(new Date(beginningMillis)) )
+
+  var width = $(window).width();
+  var chart = d3.timeline()
+    .stack() // toggles graph stacking
+    .margin({left:getLabelMargin(0.85), right:100, top:0, bottom:0})
+    .tickFormat( getTickFormat() )
+    .rowSeperators('#f5f5f5')
+    .showTimeAxisTick()
+    ;
+  var svg = d3.select("#timeline").append("svg").attr("width", width).datum(data).call(chart);
+}
+
+function hrz() {
+if( handler != null ) clearTimeout(handler)
+  handler = setTimeout(render, 150);
+}
+
+$(document).ready(render)
+$(window).resize(hrz); // resize the applet on window resize
+</script>
+</head>
+
+<body>
+<div>
+  <h3>Processes execution timeline</h3>
+  <p>
+    Launch time: <span id='label_launch'> </span><br>
+    Elapsed time: <span id='label_elapsed'> </span><br>
+    Legend: job wall time / memory usage (RAM) <span id='label_legend'> </span>
+  </p>
+  <div id="timeline"></div>
+</div>
+
+<div id='footer'>
+  Created with Nextflow -- <a href='http://www.nextflow.io' target='_blank'>http://nextflow.io</a>
+</div>
+
+<script type="text/javascript">
+var prot = (("https:" == document.location.protocol) ? "https://" : "http://");
+document.write(unescape("%3Clink href='" + prot + "fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css' %3E%3C/link%3E"));
+</script>
+</body>
+</html>
