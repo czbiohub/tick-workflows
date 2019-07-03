@@ -1,0 +1,1 @@
+/Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/docs/output.md

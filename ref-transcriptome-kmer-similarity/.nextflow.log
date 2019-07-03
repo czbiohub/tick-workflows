@@ -1,0 +1,305 @@
+Jun-21 16:10:03.107 [main] DEBUG nextflow.cli.Launcher - $> nextflow run czbiohub/nf-kmer-similarity -latest '-process.container=czbiohub/nf-kmer-similarity:latest' -r olgabot/fix-fasta --fastas 's3://tick-genome/rna/2019-06-21_concatenated_scapularis_transcriptomes/*.fasta' --one_signature_per_record --outdir 's3://tick-genome/rna/2019-06-21_concatenated_scapularis_transcriptomes/transcriptome_kmer_similarity/' -work-dir 's3://tick-genome/nextflow-intermediates/' -profile czbiohub_aws -e.process.executor=awsbatch --log2_sketch_sizes -process.errorStrategy=ignore -resume
+Jun-21 16:10:03.264 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 19.04.0
+Jun-21 16:10:04.346 [main] DEBUG nextflow.scm.AssetManager - Git config: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/.git/config; branch: master; remote: origin; url: https://github.com/czbiohub/nf-kmer-similarity.git
+Jun-21 16:10:04.358 [main] DEBUG nextflow.scm.AssetManager - Git config: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/.git/config; branch: master; remote: origin; url: https://github.com/czbiohub/nf-kmer-similarity.git
+Jun-21 16:10:04.358 [main] INFO  nextflow.cli.CmdRun - Pulling czbiohub/nf-kmer-similarity ...
+Jun-21 16:10:04.358 [main] DEBUG nextflow.scm.AssetManager - Pull pipeline czbiohub/nf-kmer-similarity  -- Using local path: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity
+Jun-21 16:10:05.331 [main] DEBUG nextflow.scm.AssetManager - Git config: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/.git/config; branch: master; remote: origin; url: https://github.com/czbiohub/nf-kmer-similarity.git
+Jun-21 16:10:05.331 [main] INFO  nextflow.cli.CmdRun - Launching `czbiohub/nf-kmer-similarity` [sick_wilson] - revision: a62a79cfc3 [olgabot/fix-fasta]
+Jun-21 16:10:05.347 [main] DEBUG nextflow.config.ConfigBuilder - Found config home: /Users/olgabot/.nextflow/config
+Jun-21 16:10:05.348 [main] DEBUG nextflow.config.ConfigBuilder - Found config base: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/nextflow.config
+Jun-21 16:10:05.349 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/olgabot/.nextflow/config
+Jun-21 16:10:05.349 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/nextflow.config
+Jun-21 16:10:05.349 [main] DEBUG nextflow.config.ConfigBuilder - Adding following variables to session environment: [process.executor:awsbatch]
+Jun-21 16:10:05.365 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `czbiohub_aws`
+Jun-21 16:10:05.423 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `czbiohub_aws`
+Jun-21 16:10:05.914 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [czbiohub_aws, hebbe, cfc, uppmax_devel, uzh, test, bigpurple, crick, uppmax, local, docker, gis, phoenix, shh, ccga, mendel, uct_hex, aws, munin, binac, prince]
+Jun-21 16:10:05.961 [main] DEBUG nextflow.Session - Session uuid: ab97669d-e63f-4666-bf6a-fe23f889f07d
+Jun-21 16:10:05.961 [main] DEBUG nextflow.Session - Run name: sick_wilson
+Jun-21 16:10:05.962 [main] DEBUG nextflow.Session - Executor pool size: 8
+Jun-21 16:10:05.980 [main] DEBUG nextflow.file.FileHelper - Creating a file system instance for provider: S3FileSystemProvider
+Jun-21 16:10:05.989 [main] DEBUG nextflow.Global - Using AWS credential defined in `default` section in file: /Users/olgabot/.aws/credentials
+Jun-21 16:10:05.995 [main] DEBUG nextflow.file.FileHelper - AWS S3 config details: {secret_key=z+xZ9R.., signer_override=S3SignerType, max_connections=20, upload_storage_class=INTELLIGENT_TIERING, storage_encryption=AES256, access_key=AKIAWF.., region=us-west-2, connection_timeout=10000}
+Jun-21 16:10:16.410 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 19.04.0 build 5070
+  Modified: 24-04-2019 16:06 UTC (09:06 PDT)
+  System: Mac OS X 10.14.4
+  Runtime: Groovy 2.5.6 on Java HotSpot(TM) 64-Bit Server VM 1.8.0_131-b11
+  Encoding: UTF-8 (UTF-8)
+  Process: 91640@Olgas-MacBook-Pro.local [192.168.101.61]
+  CPUs: 8 - Mem: 16 GB (357.5 MB) - Swap: 5 GB (785 MB)
+Jun-21 16:10:16.799 [main] DEBUG nextflow.Session - Work-dir: s3://tick-genome/nextflow-intermediates [Mac OS X]
+Jun-21 16:10:16.799 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity/bin
+Jun-21 16:10:17.159 [main] DEBUG nextflow.Session - Session start invoked
+Jun-21 16:10:17.163 [main] DEBUG nextflow.processor.TaskDispatcher - Dispatcher > start
+Jun-21 16:10:17.164 [main] DEBUG nextflow.trace.TraceFileObserver - Flow starting -- trace file: /Users/olgabot/code/tick-workflows/kmer-similarity/trace.txt
+Jun-21 16:10:17.176 [main] DEBUG nextflow.script.ScriptRunner - > Script parsing
+Jun-21 16:10:17.482 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Jun-21 16:10:17.484 [main] WARN  nextflow.script.ScriptBinding - Access to undefined parameter `help` -- Initialise it to a default value eg. `params.help = some_value`
+Jun-21 16:10:17.585 [PathVisitor-1] DEBUG nextflow.file.PathVisitor - files for syntax: glob; folder: /tick-genome/rna/2019-06-21_concatenated_scapularis_transcriptomes/; pattern: *.fasta; options: [:]
+Jun-21 16:10:17.586 [PathVisitor-1] DEBUG nextflow.file.FileHelper - Path matcher not defined by 'S3FileSystem' file system -- using default default strategy
+Jun-21 16:10:17.671 [main] INFO  nextflow.Nextflow - ==================================================================
+      _                            _       _ _         _ _
+     | |_ ___ _____ ___ ___    ___|_|_____|_| |___ ___|_| |_ _ _
+     | '_|___|     | -_|  _|  |_ -| |     | | | .'|  _| |  _| | |
+     |_,_|   |_|_|_|___|_|    |___|_|_|_|_|_|_|__,|_| |_|_| |_  |
+                                                            |___|
+
+czbiohub/nf-kmer-similarity vnull"
+==================================================================
+Jun-21 16:10:17.677 [main] INFO  nextflow.Nextflow - Pipeline Name  : czbiohub/nf-kmer-similarity
+Pipeline Version: null
+Run Name       : sick_wilson
+Read Pairs     : false
+Input fastas   : s3://tick-genome/rna/2019-06-21_concatenated_scapularis_transcriptomes/*.fasta
+SRA/ENA IDs    : false
+Molecules      : dna,protein
+K-mer sizes    : 21,27,33,51
+Log2 sketch sizes: true
+Make one signature per record?: true
+Max Memory     : 1.9 TB
+Max CPUs       : 96
+Max Time       : 10d
+Output dir     : s3://tick-genome/rna/2019-06-21_concatenated_scapularis_transcriptomes/transcriptome_kmer_similarity/
+Working dir    : /tick-genome/nextflow-intermediates
+Container Engine: docker
+Container      : czbiohub/nf-kmer-similarity:latest
+Current home   : /Users/olgabot
+Current user   : olgabot
+Current path   : /Users/olgabot/code/tick-workflows/kmer-similarity
+Script dir     : /Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity
+Config Profile : czbiohub_aws
+Jun-21 16:10:17.678 [main] INFO  nextflow.Nextflow - =========================================
+Jun-21 16:10:17.744 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: awsbatch
+Jun-21 16:10:17.744 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'awsbatch'
+Jun-21 16:10:17.762 [main] DEBUG nextflow.executor.Executor - Initializing executor: awsbatch
+Jun-21 16:10:17.766 [main] INFO  nextflow.executor.Executor - [warm up] executor > awsbatch
+Jun-21 16:10:17.787 [main] DEBUG nextflow.util.ThrottlingExecutor - Creating throttling executor with opts: nextflow.util.ThrottlingExecutor$Options(poolName:AWSBatch-executor, limiter:RateLimiter[stableRate=50.0qps], poolSize:40, maxPoolSize:40, queueSize:5000, maxRetries:10, keepAlive:1m, autoThrottle:true, errorBurstDelay:1s, rampUpInterval:100, rampUpFactor:1.2, rampUpMaxRate:1.7976931348623157E308, backOffFactor:2.0, backOffMinRate:0.0166666667, retryDelay:1s)
+Jun-21 16:10:17.799 [main] DEBUG nextflow.util.ThrottlingExecutor - Creating throttling executor with opts: nextflow.util.ThrottlingExecutor$Options(poolName:AWSBatch-reaper, limiter:RateLimiter[stableRate=50.0qps], poolSize:40, maxPoolSize:40, queueSize:5000, maxRetries:10, keepAlive:1m, autoThrottle:true, errorBurstDelay:1s, rampUpInterval:100, rampUpFactor:1.2, rampUpMaxRate:1.7976931348623157E308, backOffFactor:2.0, backOffMinRate:0.0166666667, retryDelay:1s)
+Jun-21 16:10:17.801 [main] DEBUG n.cloud.aws.batch.AwsBatchExecutor - Creating parallel monitor for executor 'awsbatch' > pollInterval=10s; dumpInterval=5m
+Jun-21 16:10:17.808 [main] DEBUG nextflow.processor.TaskDispatcher - Starting monitor: ParallelPollingMonitor
+Jun-21 16:10:17.808 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: awsbatch)
+Jun-21 16:10:17.811 [main] DEBUG nextflow.executor.Executor - Invoke register for executor: awsbatch
+Jun-21 16:10:17.852 [main] DEBUG nextflow.Global - Using AWS credential defined in `default` section in file: /Users/olgabot/.aws/credentials
+Jun-21 16:10:17.939 [main] DEBUG nextflow.Session - >>> barrier register (process: get_software_versions)
+Jun-21 16:10:17.943 [main] DEBUG nextflow.processor.TaskProcessor - Creating operator > get_software_versions -- maxForks: 8
+Jun-21 16:10:18.013 [main] DEBUG nextflow.util.CacheHelper - Config settings `withName:sourmash_compute_sketch` matches process sourmash_compute_sketch
+Jun-21 16:10:18.028 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: awsbatch
+Jun-21 16:10:18.029 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'awsbatch'
+Jun-21 16:10:18.029 [main] DEBUG nextflow.executor.Executor - Initializing executor: awsbatch
+Jun-21 16:10:18.041 [main] DEBUG nextflow.Session - >>> barrier register (process: sourmash_compute_sketch)
+Jun-21 16:10:18.042 [main] DEBUG nextflow.processor.TaskProcessor - Creating *combiner* operator for each param(s) at index(es): [0, 1, 2]
+Jun-21 16:10:18.056 [main] DEBUG nextflow.processor.TaskProcessor - Creating operator > sourmash_compute_sketch -- maxForks: 8
+Jun-21 16:10:18.100 [main] DEBUG nextflow.util.CacheHelper - Config settings `withName:sourmash_compare_sketches` matches process sourmash_compare_sketches
+Jun-21 16:10:18.101 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: awsbatch
+Jun-21 16:10:18.102 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'awsbatch'
+Jun-21 16:10:18.102 [main] DEBUG nextflow.executor.Executor - Initializing executor: awsbatch
+Jun-21 16:10:18.103 [main] DEBUG nextflow.Session - >>> barrier register (process: sourmash_compare_sketches)
+Jun-21 16:10:18.107 [main] DEBUG nextflow.processor.TaskProcessor - Creating operator > sourmash_compare_sketches -- maxForks: 8
+Jun-21 16:10:18.109 [main] DEBUG nextflow.script.ScriptRunner - > Await termination 
+Jun-21 16:10:18.109 [main] DEBUG nextflow.Session - Session await
+Jun-21 16:10:18.779 [AWSBatch-executor-1] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] Found job definition name=nf-czbiohub-nf-kmer-similarity:2; container=czbiohub/nf-kmer-similarity
+Jun-21 16:10:18.850 [AWSBatch-executor-7] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] Found job definition name=nf-czbiohub-nf-kmer-similarity-latest:1; container=czbiohub/nf-kmer-similarity:latest
+Jun-21 16:10:18.937 [AWSBatch-executor-9] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=8cd15306-263d-4585-8d09-d4335e7d241c; work-dir=s3://tick-genome/nextflow-intermediates/01/7c48b3db465f93cccea0f78a257308
+Jun-21 16:10:18.938 [AWSBatch-executor-9] INFO  nextflow.Session - [01/7c48b3] Submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-true)
+Jun-21 16:10:18.967 [AWSBatch-executor-1] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=956004d4-9ad3-4085-92a0-7cd362fbacd3; work-dir=s3://tick-genome/nextflow-intermediates/e8/a43b278f0bee06f94a1f8a37f81600
+Jun-21 16:10:18.967 [AWSBatch-executor-1] INFO  nextflow.Session - [e8/a43b27] Submitted process > get_software_versions
+Jun-21 16:10:18.986 [AWSBatch-executor-5] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=f7018b02-83e8-45f1-816a-522efb328832; work-dir=s3://tick-genome/nextflow-intermediates/ad/3e83cc59d8a566a37fa807273f97ed
+Jun-21 16:10:18.987 [AWSBatch-executor-5] INFO  nextflow.Session - [ad/3e83cc] Submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-true)
+Jun-21 16:10:18.990 [AWSBatch-executor-8] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=36accdec-bee2-45c9-9f0e-ba7a994ed50e; work-dir=s3://tick-genome/nextflow-intermediates/ef/ecccb9755e71c91c96f7dcb5385314
+Jun-21 16:10:18.990 [AWSBatch-executor-8] INFO  nextflow.Session - [ef/ecccb9] Submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-true)
+Jun-21 16:10:18.997 [AWSBatch-executor-6] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=45e32dab-46db-4616-9185-86f76bfa0aec; work-dir=s3://tick-genome/nextflow-intermediates/63/9d3fef7551cec3314496bb2fb0be01
+Jun-21 16:10:18.997 [AWSBatch-executor-2] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=e59a484d-b420-487a-ab59-c668d1241383; work-dir=s3://tick-genome/nextflow-intermediates/1b/6eda2cb29920a2cc1c147e768820ed
+Jun-21 16:10:18.997 [AWSBatch-executor-6] INFO  nextflow.Session - [63/9d3fef] Submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-true)
+Jun-21 16:10:18.997 [AWSBatch-executor-2] INFO  nextflow.Session - [1b/6eda2c] Submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-true)
+Jun-21 16:10:19.038 [AWSBatch-executor-3] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=f0a9e865-b7ea-4959-8dda-1abe5a048c54; work-dir=s3://tick-genome/nextflow-intermediates/2e/fa4ee39752a5c0dc1993ddbac2c656
+Jun-21 16:10:19.038 [AWSBatch-executor-4] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=26124a15-4b3b-4754-a171-a31f7e5cb129; work-dir=s3://tick-genome/nextflow-intermediates/a1/7372f3b48ebbdf2057cf89c877d644
+Jun-21 16:10:19.039 [AWSBatch-executor-3] INFO  nextflow.Session - [2e/fa4ee3] Submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-true)
+Jun-21 16:10:19.039 [AWSBatch-executor-4] INFO  nextflow.Session - [a1/7372f3] Submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-true)
+Jun-21 16:10:19.053 [AWSBatch-executor-7] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=f21c45b4-2723-46a5-9e87-e210dcbafb85; work-dir=s3://tick-genome/nextflow-intermediates/59/c30bab9de1c974ba47f6092cb05078
+Jun-21 16:10:19.053 [AWSBatch-executor-7] INFO  nextflow.Session - [59/c30bab] Submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-true)
+Jun-21 16:10:48.126 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 6; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/01/7c48b3db465f93cccea0f78a257308]
+Jun-21 16:10:48.134 [Task monitor] INFO  nextflow.processor.TaskProcessor - [01/7c48b3] NOTE: Process `sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-true)` terminated with an error exit status (1) -- Execution is retried (1)
+Jun-21 16:10:48.292 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:10:48.388 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/ad/3e83cc59d8a566a37fa807273f97ed]
+Jun-21 16:10:48.389 [Task monitor] INFO  nextflow.processor.TaskProcessor - [ad/3e83cc] NOTE: Process `sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-true)` terminated with an error exit status (1) -- Execution is retried (1)
+Jun-21 16:10:48.429 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:10:48.469 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 9; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/ef/ecccb9755e71c91c96f7dcb5385314]
+Jun-21 16:10:48.470 [Task monitor] INFO  nextflow.processor.TaskProcessor - [ef/ecccb9] NOTE: Process `sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-true)` terminated with an error exit status (1) -- Execution is retried (1)
+Jun-21 16:10:48.510 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:10:48.553 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/63/9d3fef7551cec3314496bb2fb0be01]
+Jun-21 16:10:48.555 [Task monitor] INFO  nextflow.processor.TaskProcessor - [63/9d3fef] NOTE: Process `sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-true)` terminated with an error exit status (1) -- Execution is retried (1)
+Jun-21 16:10:48.596 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:10:48.605 [AWSBatch-executor-13] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=e03d09fd-f276-4868-9f9e-e2e3994d2a78; work-dir=s3://tick-genome/nextflow-intermediates/29/e056d1d3bf934ffaf92f8a61e5b716
+Jun-21 16:10:48.605 [AWSBatch-executor-13] INFO  nextflow.Session - [29/e056d1] Re-submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-true)
+Jun-21 16:10:48.636 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/1b/6eda2cb29920a2cc1c147e768820ed]
+Jun-21 16:10:48.637 [Task monitor] INFO  nextflow.processor.TaskProcessor - [1b/6eda2c] NOTE: Process `sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-true)` terminated with an error exit status (1) -- Execution is retried (1)
+Jun-21 16:10:48.678 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:10:48.720 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/2e/fa4ee39752a5c0dc1993ddbac2c656]
+Jun-21 16:10:48.721 [Task monitor] INFO  nextflow.processor.TaskProcessor - [2e/fa4ee3] NOTE: Process `sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-true)` terminated with an error exit status (1) -- Execution is retried (1)
+Jun-21 16:10:48.760 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:10:48.798 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 8; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/a1/7372f3b48ebbdf2057cf89c877d644]
+Jun-21 16:10:48.800 [Task monitor] INFO  nextflow.processor.TaskProcessor - [a1/7372f3] NOTE: Process `sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-true)` terminated with an error exit status (1) -- Execution is retried (1)
+Jun-21 16:10:48.841 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:10:48.877 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 7; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/59/c30bab9de1c974ba47f6092cb05078]
+Jun-21 16:10:48.879 [Task monitor] INFO  nextflow.processor.TaskProcessor - [59/c30bab] NOTE: Process `sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-true)` terminated with an error exit status (1) -- Execution is retried (1)
+Jun-21 16:10:48.919 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:10:48.934 [AWSBatch-executor-14] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=860a5d9a-ffdc-488e-a624-b0332d7ae580; work-dir=s3://tick-genome/nextflow-intermediates/b1/63118ac540fb7d9ebb4bbec52d573a
+Jun-21 16:10:48.934 [AWSBatch-executor-14] INFO  nextflow.Session - [b1/63118a] Re-submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-true)
+Jun-21 16:10:48.971 [AWSBatch-executor-15] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=5ae16e8f-c2a1-4cd2-acf8-18cfc4d4e71a; work-dir=s3://tick-genome/nextflow-intermediates/26/2af0b7f9d33d2fb02e4da3a3de69c4
+Jun-21 16:10:48.971 [AWSBatch-executor-15] INFO  nextflow.Session - [26/2af0b7] Re-submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-true)
+Jun-21 16:10:49.035 [AWSBatch-executor-16] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=3681e939-58b1-4450-ac93-161591eda0f3; work-dir=s3://tick-genome/nextflow-intermediates/8b/e743fe607e91ed1cebaf16c249169d
+Jun-21 16:10:49.035 [AWSBatch-executor-16] INFO  nextflow.Session - [8b/e743fe] Re-submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-true)
+Jun-21 16:10:49.164 [AWSBatch-executor-17] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=70f1535a-b12b-4d10-9ff6-353e5f4da87f; work-dir=s3://tick-genome/nextflow-intermediates/fd/f790fe34223f072e68430578fa1972
+Jun-21 16:10:49.164 [AWSBatch-executor-17] INFO  nextflow.Session - [fd/f790fe] Re-submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-true)
+Jun-21 16:10:49.238 [AWSBatch-executor-19] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=1d695214-154e-477c-a929-7468f8eec54d; work-dir=s3://tick-genome/nextflow-intermediates/b4/bf45302e05b0caeb13d9aaa5359708
+Jun-21 16:10:49.238 [AWSBatch-executor-19] INFO  nextflow.Session - [b4/bf4530] Re-submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-true)
+Jun-21 16:10:49.253 [AWSBatch-executor-18] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=1e24ce2e-08b2-4ab4-b4a4-3713ddc9d1e0; work-dir=s3://tick-genome/nextflow-intermediates/bf/fe408e4be2b29920f0ec05db82cec1
+Jun-21 16:10:49.253 [AWSBatch-executor-18] INFO  nextflow.Session - [bf/fe408e] Re-submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-true)
+Jun-21 16:10:49.297 [AWSBatch-executor-20] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=1eeb1d1a-b024-4ee9-9157-7022e02a66de; work-dir=s3://tick-genome/nextflow-intermediates/3a/eace4e36810611ae0f9b696c8c0b91
+Jun-21 16:10:49.297 [AWSBatch-executor-20] INFO  nextflow.Session - [3a/eace4e] Re-submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-true)
+Jun-21 16:11:18.067 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 10; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/29/e056d1d3bf934ffaf92f8a61e5b716]
+Jun-21 16:11:18.076 [Task monitor] INFO  nextflow.processor.TaskProcessor - [29/e056d1] NOTE: Process `sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-true)` terminated with an error exit status (1) -- Execution is retried (2)
+Jun-21 16:11:18.264 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:11:18.355 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 11; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/b1/63118ac540fb7d9ebb4bbec52d573a]
+Jun-21 16:11:18.356 [Task monitor] INFO  nextflow.processor.TaskProcessor - [b1/63118a] NOTE: Process `sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-true)` terminated with an error exit status (1) -- Execution is retried (2)
+Jun-21 16:11:18.399 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:11:18.438 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 13; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/26/2af0b7f9d33d2fb02e4da3a3de69c4]
+Jun-21 16:11:18.439 [Task monitor] INFO  nextflow.processor.TaskProcessor - [26/2af0b7] NOTE: Process `sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-true)` terminated with an error exit status (1) -- Execution is retried (2)
+Jun-21 16:11:18.479 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:11:18.519 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 12; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/8b/e743fe607e91ed1cebaf16c249169d]
+Jun-21 16:11:18.519 [Task monitor] INFO  nextflow.processor.TaskProcessor - [8b/e743fe] NOTE: Process `sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-true)` terminated with an error exit status (1) -- Execution is retried (2)
+Jun-21 16:11:18.561 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:11:18.607 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 14; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/fd/f790fe34223f072e68430578fa1972]
+Jun-21 16:11:18.608 [Task monitor] INFO  nextflow.processor.TaskProcessor - [fd/f790fe] NOTE: Process `sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-true)` terminated with an error exit status (1) -- Execution is retried (2)
+Jun-21 16:11:18.636 [AWSBatch-executor-24] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=2e58b764-453d-4f94-9548-0a89b4bde630; work-dir=s3://tick-genome/nextflow-intermediates/8b/018580a94432f4e4a2c79ee51bf689
+Jun-21 16:11:18.636 [AWSBatch-executor-24] INFO  nextflow.Session - [8b/018580] Re-submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-true)
+Jun-21 16:11:18.650 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:11:18.692 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 17; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/b4/bf45302e05b0caeb13d9aaa5359708]
+Jun-21 16:11:18.693 [Task monitor] INFO  nextflow.processor.TaskProcessor - [b4/bf4530] NOTE: Process `sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-true)` terminated with an error exit status (1) -- Execution is retried (2)
+Jun-21 16:11:18.936 [AWSBatch-executor-25] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=58d61dd8-26bd-43ad-9efc-bb3a2b1061b9; work-dir=s3://tick-genome/nextflow-intermediates/0d/690a6165299aaa1b96256fcf23d33f
+Jun-21 16:11:18.937 [AWSBatch-executor-25] INFO  nextflow.Session - [0d/690a61] Re-submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-true)
+Jun-21 16:11:18.967 [AWSBatch-executor-27] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=82ac477e-89fa-4877-9d69-d3904a20b2c1; work-dir=s3://tick-genome/nextflow-intermediates/c1/303bd54561abadf7f53bf019ec1364
+Jun-21 16:11:18.967 [AWSBatch-executor-27] INFO  nextflow.Session - [c1/303bd5] Re-submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-true)
+Jun-21 16:11:19.076 [AWSBatch-executor-26] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=f5c30dda-5dac-4f66-9d2f-8fd084e26be4; work-dir=s3://tick-genome/nextflow-intermediates/4d/5447861df0430199271619f9dfbc95
+Jun-21 16:11:19.076 [AWSBatch-executor-26] INFO  nextflow.Session - [4d/544786] Re-submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-true)
+Jun-21 16:11:19.100 [AWSBatch-executor-28] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=91a1ed2d-2916-4c75-9157-6008abb72e44; work-dir=s3://tick-genome/nextflow-intermediates/28/0a4e7589d101d43d0e83d3a1d17fd6
+Jun-21 16:11:19.100 [AWSBatch-executor-28] INFO  nextflow.Session - [28/0a4e75] Re-submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-true)
+Jun-21 16:11:19.128 [AWSBatch-executor-29] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=dd25c13a-275c-419c-8fde-7b63579040f4; work-dir=s3://tick-genome/nextflow-intermediates/21/c602b4aa021e234329d8e00b612de1
+Jun-21 16:11:19.128 [AWSBatch-executor-29] INFO  nextflow.Session - [21/c602b4] Re-submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-true)
+Jun-21 16:11:19.230 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:11:19.291 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 15; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/bf/fe408e4be2b29920f0ec05db82cec1]
+Jun-21 16:11:19.292 [Task monitor] INFO  nextflow.processor.TaskProcessor - [bf/fe408e] NOTE: Process `sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-true)` terminated with an error exit status (1) -- Execution is retried (2)
+Jun-21 16:11:19.335 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:11:19.373 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 16; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/3a/eace4e36810611ae0f9b696c8c0b91]
+Jun-21 16:11:19.376 [Task monitor] INFO  nextflow.processor.TaskProcessor - [3a/eace4e] NOTE: Process `sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-true)` terminated with an error exit status (1) -- Execution is retried (2)
+Jun-21 16:11:19.421 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:11:19.715 [AWSBatch-executor-30] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=35eba3fc-d677-49b4-a700-5baba5340390; work-dir=s3://tick-genome/nextflow-intermediates/ad/15d509448445242c39333803b11d2f
+Jun-21 16:11:19.715 [AWSBatch-executor-30] INFO  nextflow.Session - [ad/15d509] Re-submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-true)
+Jun-21 16:11:19.785 [AWSBatch-executor-31] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=a5ce7fe8-e671-4cd0-bf16-9aa0a5a443da; work-dir=s3://tick-genome/nextflow-intermediates/d8/8651f484cc24b3ff1b117c237ca6c1
+Jun-21 16:11:19.785 [AWSBatch-executor-31] INFO  nextflow.Session - [d8/8651f4] Re-submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-true)
+Jun-21 16:11:48.100 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: get_software_versions; status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/e8/a43b278f0bee06f94a1f8a37f81600]
+Jun-21 16:11:48.101 [Task monitor] INFO  nextflow.processor.TaskProcessor - [e8/a43b27] NOTE: Process `get_software_versions` terminated with an error exit status (1) -- Error is ignored
+Jun-21 16:11:48.106 [Actor Thread 1] DEBUG nextflow.Session - <<< barrier arrive (process: get_software_versions)
+Jun-21 16:11:48.146 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:11:48.190 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 18; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/8b/018580a94432f4e4a2c79ee51bf689]
+Jun-21 16:11:48.191 [Task monitor] INFO  nextflow.processor.TaskProcessor - [8b/018580] NOTE: Process `sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-true)` terminated with an error exit status (1) -- Execution is retried (3)
+Jun-21 16:11:48.241 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:11:48.285 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 19; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/0d/690a6165299aaa1b96256fcf23d33f]
+Jun-21 16:11:48.286 [Task monitor] INFO  nextflow.processor.TaskProcessor - [0d/690a61] NOTE: Process `sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-true)` terminated with an error exit status (1) -- Execution is retried (3)
+Jun-21 16:11:48.331 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:11:48.372 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 20; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/c1/303bd54561abadf7f53bf019ec1364]
+Jun-21 16:11:48.373 [Task monitor] INFO  nextflow.processor.TaskProcessor - [c1/303bd5] NOTE: Process `sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-true)` terminated with an error exit status (1) -- Execution is retried (3)
+Jun-21 16:11:48.422 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:11:48.465 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 21; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/4d/5447861df0430199271619f9dfbc95]
+Jun-21 16:11:48.465 [Task monitor] INFO  nextflow.processor.TaskProcessor - [4d/544786] NOTE: Process `sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-true)` terminated with an error exit status (1) -- Execution is retried (3)
+Jun-21 16:11:48.612 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:11:48.652 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 22; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/28/0a4e7589d101d43d0e83d3a1d17fd6]
+Jun-21 16:11:48.653 [Task monitor] INFO  nextflow.processor.TaskProcessor - [28/0a4e75] NOTE: Process `sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-true)` terminated with an error exit status (1) -- Execution is retried (3)
+Jun-21 16:11:48.693 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:11:48.732 [AWSBatch-executor-35] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=e8e9f024-315e-4cc8-874d-d326de954207; work-dir=s3://tick-genome/nextflow-intermediates/c3/26cc9d6c16631699580d4668624256
+Jun-21 16:11:48.732 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 23; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/21/c602b4aa021e234329d8e00b612de1]
+Jun-21 16:11:48.732 [AWSBatch-executor-35] INFO  nextflow.Session - [c3/26cc9d] Re-submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-true)
+Jun-21 16:11:48.733 [Task monitor] INFO  nextflow.processor.TaskProcessor - [21/c602b4] NOTE: Process `sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-true)` terminated with an error exit status (1) -- Execution is retried (3)
+Jun-21 16:11:48.771 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:11:48.809 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 24; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/ad/15d509448445242c39333803b11d2f]
+Jun-21 16:11:48.810 [Task monitor] INFO  nextflow.processor.TaskProcessor - [ad/15d509] NOTE: Process `sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-true)` terminated with an error exit status (1) -- Execution is retried (3)
+Jun-21 16:11:48.857 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:11:48.917 [AWSBatch-executor-36] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=48082b36-22ef-402d-9176-ed0dbccebbc9; work-dir=s3://tick-genome/nextflow-intermediates/0b/5031de5c783c5aaa43f2f6970a8485
+Jun-21 16:11:48.917 [AWSBatch-executor-36] INFO  nextflow.Session - [0b/5031de] Re-submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-true)
+Jun-21 16:11:48.923 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 25; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/d8/8651f484cc24b3ff1b117c237ca6c1]
+Jun-21 16:11:48.924 [Task monitor] INFO  nextflow.processor.TaskProcessor - [d8/8651f4] NOTE: Process `sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-true)` terminated with an error exit status (1) -- Execution is retried (3)
+Jun-21 16:11:48.941 [AWSBatch-executor-38] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=4ad490b9-a448-44a1-ab27-0bffb7b10835; work-dir=s3://tick-genome/nextflow-intermediates/a7/e51c95ac0183e9567f7e30baf94962
+Jun-21 16:11:48.941 [AWSBatch-executor-38] INFO  nextflow.Session - [a7/e51c95] Re-submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-true)
+Jun-21 16:11:48.944 [AWSBatch-executor-37] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=79e5b62c-be82-4b44-90a8-6ac91f7ea13d; work-dir=s3://tick-genome/nextflow-intermediates/1d/65b53b594c88b41fef7285e165b840
+Jun-21 16:11:48.944 [AWSBatch-executor-37] INFO  nextflow.Session - [1d/65b53b] Re-submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-true)
+Jun-21 16:11:48.964 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:11:49.100 [AWSBatch-executor-39] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=4f679993-c6ed-4a41-9707-29e0a5960720; work-dir=s3://tick-genome/nextflow-intermediates/11/5b8e5d9529426f5f37fcd633af73b2
+Jun-21 16:11:49.100 [AWSBatch-executor-39] INFO  nextflow.Session - [11/5b8e5d] Re-submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-true)
+Jun-21 16:11:49.320 [AWSBatch-executor-40] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=c1722dd7-d94b-4516-b0e5-9971cb5de46f; work-dir=s3://tick-genome/nextflow-intermediates/a1/cbb0c51e925caf79b5b26b521e223c
+Jun-21 16:11:49.320 [AWSBatch-executor-40] INFO  nextflow.Session - [a1/cbb0c5] Re-submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-true)
+Jun-21 16:11:49.343 [AWSBatch-executor-42] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=1a9640bb-b1ea-48e2-a798-66adbc405473; work-dir=s3://tick-genome/nextflow-intermediates/3d/052da28908e4b01a9acfa32ed0248b
+Jun-21 16:11:49.343 [AWSBatch-executor-42] INFO  nextflow.Session - [3d/052da2] Re-submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-true)
+Jun-21 16:11:49.394 [AWSBatch-executor-41] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] submitted > job=202cfb13-b147-4781-8aaf-f4d4bbd3a666; work-dir=s3://tick-genome/nextflow-intermediates/9d/d0438c4c262594af6a83b1f3da5c24
+Jun-21 16:11:49.394 [AWSBatch-executor-41] INFO  nextflow.Session - [9d/d0438c] Re-submitted process > sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-true)
+Jun-21 16:12:18.078 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 26; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/c3/26cc9d6c16631699580d4668624256]
+Jun-21 16:12:18.365 [Task monitor] ERROR nextflow.processor.TaskProcessor - Error executing process > 'sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-true)'
+
+Caused by:
+  Process `sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-true)` terminated with an error exit status (1)
+
+Command executed:
+
+  sourmash compute       --num-hashes $((2**true))       --ksizes 21       --protein       --output combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-true.sig       combined_tick2_ref_transcriptome.fasta
+
+Command exit status:
+  1
+
+Command output:
+  (empty)
+
+Command error:
+  .command.sh: line 2: true: unbound variable
+
+Work dir:
+  s3://tick-genome/nextflow-intermediates/c3/26cc9d6c16631699580d4668624256
+
+Tip: view the complete command output by changing to the process work dir and entering the command `cat .command.out`
+Jun-21 16:12:18.404 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:12:18.405 [Task monitor] DEBUG nextflow.Session - Session aborted -- Cause: Process `sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-true)` terminated with an error exit status (1)
+Jun-21 16:12:18.433 [Task monitor] DEBUG nextflow.Session - The following nodes are still active:
+[process] sourmash_compare_sketches
+  status=ACTIVE
+  port 0: (queue) OPEN  ; channel: -
+  port 1: (cntrl) -     ; channel: $
+
+Jun-21 16:12:18.593 [main] DEBUG nextflow.Session - Session await > all process finished
+Jun-21 16:12:18.594 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Jun-21 16:12:18.637 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 27; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-33_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/0b/5031de5c783c5aaa43f2f6970a8485]
+Jun-21 16:12:18.680 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:12:18.717 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 28; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-27_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/a7/e51c95ac0183e9567f7e30baf94962]
+Jun-21 16:12:18.756 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:12:18.802 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 29; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/1d/65b53b594c88b41fef7285e165b840]
+Jun-21 16:12:18.843 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:12:18.878 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 30; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-51_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/11/5b8e5d9529426f5f37fcd633af73b2]
+Jun-21 16:12:18.915 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:12:18.951 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 31; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/a1/cbb0c51e925caf79b5b26b521e223c]
+Jun-21 16:12:18.963 [main] WARN  n.processor.TaskPollingMonitor - Killing pending tasks (2)
+Jun-21 16:12:18.989 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:12:19.025 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 33; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/3d/052da28908e4b01a9acfa32ed0248b]
+Jun-21 16:12:19.062 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:12:19.100 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 32; name: sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-true); status: COMPLETED; exit: 1; error: -; workDir: s3://tick-genome/nextflow-intermediates/9d/d0438c4c262594af6a83b1f3da5c24]
+Jun-21 16:12:19.100 [AWSBatch-reaper-1] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] killing job=1a9640bb-b1ea-48e2-a798-66adbc405473; response={}
+Jun-21 16:12:19.101 [Actor Thread 16] DEBUG nextflow.Session - <<< barrier arrive (process: sourmash_compute_sketch)
+Jun-21 16:12:19.139 [Task monitor] DEBUG nextflow.trace.TraceRecord - Not a valid trace `realtime` value: '2'
+Jun-21 16:12:19.140 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: awsbatch)
+Jun-21 16:12:19.430 [AWSBatch-reaper-2] DEBUG n.c.aws.batch.AwsBatchTaskHandler - [AWS BATCH] killing job=202cfb13-b147-4781-8aaf-f4d4bbd3a666; response={}
+Jun-21 16:12:19.431 [main] DEBUG nextflow.trace.StatsObserver - Workflow completed > WorkflowStats[succeedCount=0; failedCount=34; ignoredCount=1; cachedCount=0; succeedDuration=0ms; failedDuration=10m 42s; cachedDuration=0ms]
+Jun-21 16:12:19.431 [main] DEBUG nextflow.trace.TraceFileObserver - Flow completing -- flushing trace file
+Jun-21 16:12:19.433 [main] DEBUG nextflow.trace.ReportObserver - Flow completing -- rendering html report
+Jun-21 16:12:19.509 [main] DEBUG nextflow.trace.ReportObserver - Execution report summary data:
+  {"sourmash_compute_sketch":{"cpu":null,"mem":null,"vmem":null,"time":{"mean":17550.69,"min":10266,"q1":11323,"q2":19786,"q3":20578,"max":21344,"minLabel":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-true)","maxLabel":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-true)","q1Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-true)","q2Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-true)","q3Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-27_log2sketchsize-true)"},"reads":null,"writes":null,"cpuUsage":null,"memUsage":null,"timeUsage":{"mean":0.13,"min":0.05,"q1":0.06,"q2":0.07,"q3":0.18,"max":0.29,"minLabel":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-21_log2sketchsize-true)","maxLabel":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-33_log2sketchsize-true)","q1Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-protein_ksize-51_log2sketchsize-true)","q2Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-true)","q3Label":"sourmash_compute_sketch (combined_tick2_ref_transcriptome_molecule-dna_ksize-21_log2sketchsize-true)"}},"get_software_versions":{"cpu":null,"mem":null,"vmem":null,"time":{"mean":80140,"min":80140,"q1":80140,"q2":80140,"q3":80140,"max":80140,"minLabel":"get_software_versions","maxLabel":"get_software_versions","q1Label":"get_software_versions","q2Label":"get_software_versions","q3Label":"get_software_versions"},"reads":null,"writes":null,"cpuUsage":null,"memUsage":null,"timeUsage":{"mean":1.11,"min":1.11,"q1":1.11,"q2":1.11,"q3":1.11,"max":1.11,"minLabel":"get_software_versions","maxLabel":"get_software_versions","q1Label":"get_software_versions","q2Label":"get_software_versions","q3Label":"get_software_versions"}}}
+Jun-21 16:12:20.595 [main] DEBUG nextflow.trace.TimelineObserver - Flow completing -- rendering html timeline
+Jun-21 16:12:20.658 [main] DEBUG nextflow.CacheDB - Closing CacheDB done
+Jun-21 16:12:20.661 [main] DEBUG nextflow.Session - AWS S3 uploader shutdown
+Jun-21 16:12:20.677 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

@@ -1,0 +1,31 @@
+
+id: 'nf-large-assembly-summary'
+description: " - this information is collected when the pipeline is started."
+section_name: 'czbiohub/nf-kmer-simlarity Workflow Summary'
+section_href: 'https://github.com/czbiohub/nf-kmer-simlarity'
+plot_type: 'html'
+data: |
+    <dl class="dl-horizontal">
+        <dt>Pipeline Name</dt><dd><samp>czbiohub/nf-kmer-similarity</samp></dd>
+        <dt>Pipeline Version</dt><dd><samp><span style="color:#999999;">N/A</a></samp></dd>
+        <dt>Run Name</dt><dd><samp>marvelous_aryabhata</samp></dd>
+        <dt>Read Pairs</dt><dd><samp><span style="color:#999999;">N/A</a></samp></dd>
+        <dt>Input fastas</dt><dd><samp>s3://tick-genome/rna/pacbio-isoseq/2018-06-07/fake_genome_and_transcriptome/tick*.fake_ref_transcriptome.fasta</samp></dd>
+        <dt>SRA/ENA IDs</dt><dd><samp><span style="color:#999999;">N/A</a></samp></dd>
+        <dt>Molecules</dt><dd><samp>dna,protein</samp></dd>
+        <dt>K-mer sizes</dt><dd><samp>21,27,33,51</samp></dd>
+        <dt>Log2 sketch sizes</dt><dd><samp>10,12,14,16</samp></dd>
+        <dt>Make one signature per record?</dt><dd><samp><span style="color:#999999;">N/A</a></samp></dd>
+        <dt>Max Memory</dt><dd><samp><span style="color:#999999;">N/A</a></samp></dd>
+        <dt>Max CPUs</dt><dd><samp><span style="color:#999999;">N/A</a></samp></dd>
+        <dt>Max Time</dt><dd><samp><span style="color:#999999;">N/A</a></samp></dd>
+        <dt>Output dir</dt><dd><samp>nextflow-output</samp></dd>
+        <dt>Working dir</dt><dd><samp>/Users/olgabot/code/tick-workflows/kmer-similarity/work</samp></dd>
+        <dt>Container Engine</dt><dd><samp>docker</samp></dd>
+        <dt>Container</dt><dd><samp><span style="color:#999999;">N/A</a></samp></dd>
+        <dt>Current home</dt><dd><samp>/Users/olgabot</samp></dd>
+        <dt>Current user</dt><dd><samp>olgabot</samp></dd>
+        <dt>Current path</dt><dd><samp>/Users/olgabot/code/tick-workflows/kmer-similarity</samp></dd>
+        <dt>Script dir</dt><dd><samp>/Users/olgabot/.nextflow/assets/czbiohub/nf-kmer-similarity</samp></dd>
+        <dt>Config Profile</dt><dd><samp>standard</samp></dd>
+    </dl>
