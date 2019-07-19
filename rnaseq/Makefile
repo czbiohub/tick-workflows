@@ -24,7 +24,7 @@ midgut:
       --saveReference \
       --saveTrimmed \
       --saveAlignedIntermediates \
-      --outdir /home/olga/ibm_lg/tick-genome/rna/midgut/nf-core-rnaseq// \
+      --outdir /home/olga/ibm_lg/tick-genome/rna/midgut/nf-core-rnaseq/ \
       -resume \
       -work-dir /home/olga/ibm_lg/nextflow-intermediates/ \
 			--custom_config_base "/home/olga/code/nf-core/configs" \
