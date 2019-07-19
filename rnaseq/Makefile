@@ -2,7 +2,7 @@ midgut_local:
 	nextflow run nf-core/rnaseq \
       -r dev \
       -latest \
-      --reads "/home/olga/czb-seqbot/fastqs/190228_NB501961_0212_AHGY53BGX9/*{R1,R2}*.fastq.gz" \
+      --reads '/home/olga/ibm_lg/czb-seqbot/fastqs/190228_NB501961_0212_AHGY53BGX9/*{R1,R2}*.fastq.gz' \
       --saveReference \
       --saveTrimmed \
       --saveAlignedIntermediates \
